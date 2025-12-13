@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HowlDev.Simulation.Physics.Primitve2D\HowlDev.Simulation.Physics.Primitive2D.csproj" />
+    <ProjectReference Include="..\..\HowlDev.Simulation.Physics.Primitive2D\HowlDev.Simulation.Physics.Primitive2D.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowlDev.Simulation.Physics.Primitive2D", "HowlDev.Simulation.Physics.Primitve2D\HowlDev.Simulation.Physics.Primitive2D.csproj", "{0EA1BD1C-0B6A-F43F-C8D0-43FDD0921C42}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowlDev.Simulation.Physics.Primitve2D.Tests", "Tests\HowlDev.Simulation.Physics.Primitve2D.Tests\HowlDev.Simulation.Physics.Primitve2D.Tests.csproj", "{81CDC4B3-54DF-FBE1-E5CD-E1A392062504}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowlDev.Simulation.Physics.Grid2D", "HowlDev.Simulation.Physics.Grid2D\HowlDev.Simulation.Physics.Grid2D.csproj", "{340E3F06-73E5-429D-A161-ED2AB2636DEE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowlDev.Simulation.Physics.Grid2D.Tests", "Tests\HowlDev.Simulation.Physics.Grid2D.Tests\HowlDev.Simulation.Physics.Grid2D.Tests.csproj", "{B4C55E41-DF42-D1C1-A8C0-B32FF5AF255C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowlDev.Simulation.Physics.Primitive2D", "HowlDev.Simulation.Physics.Primitive2D\HowlDev.Simulation.Physics.Primitive2D.csproj", "{6AE6BE4B-3666-9D1E-9F14-A6B82DDACFEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowlDev.Simulation.Physics.Primitive2D.Tests", "Tests\HowlDev.Simulation.Physics.Primitive2D.Tests\HowlDev.Simulation.Physics.Primitive2D.Tests.csproj", "{7A24DB9A-61BF-BD7A-131F-7275FBBF983F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0EA1BD1C-0B6A-F43F-C8D0-43FDD0921C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EA1BD1C-0B6A-F43F-C8D0-43FDD0921C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EA1BD1C-0B6A-F43F-C8D0-43FDD0921C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EA1BD1C-0B6A-F43F-C8D0-43FDD0921C42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81CDC4B3-54DF-FBE1-E5CD-E1A392062504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81CDC4B3-54DF-FBE1-E5CD-E1A392062504}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81CDC4B3-54DF-FBE1-E5CD-E1A392062504}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81CDC4B3-54DF-FBE1-E5CD-E1A392062504}.Release|Any CPU.Build.0 = Release|Any CPU
 		{340E3F06-73E5-429D-A161-ED2AB2636DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{340E3F06-73E5-429D-A161-ED2AB2636DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{340E3F06-73E5-429D-A161-ED2AB2636DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,13 +27,21 @@ Global
 		{B4C55E41-DF42-D1C1-A8C0-B32FF5AF255C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4C55E41-DF42-D1C1-A8C0-B32FF5AF255C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4C55E41-DF42-D1C1-A8C0-B32FF5AF255C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE6BE4B-3666-9D1E-9F14-A6B82DDACFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE6BE4B-3666-9D1E-9F14-A6B82DDACFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE6BE4B-3666-9D1E-9F14-A6B82DDACFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE6BE4B-3666-9D1E-9F14-A6B82DDACFEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A24DB9A-61BF-BD7A-131F-7275FBBF983F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A24DB9A-61BF-BD7A-131F-7275FBBF983F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A24DB9A-61BF-BD7A-131F-7275FBBF983F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A24DB9A-61BF-BD7A-131F-7275FBBF983F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{81CDC4B3-54DF-FBE1-E5CD-E1A392062504} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B4C55E41-DF42-D1C1-A8C0-B32FF5AF255C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7A24DB9A-61BF-BD7A-131F-7275FBBF983F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA372A40-027E-4A31-82F0-12757F431511}
