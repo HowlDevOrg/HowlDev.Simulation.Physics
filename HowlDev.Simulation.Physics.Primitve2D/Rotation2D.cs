@@ -1,4 +1,4 @@
-﻿namespace Physics2DLibrary;
+﻿namespace HowlDev.Simulation.Physics.Primitve2D;
 
 /// <summary>
 /// Class <c>Rotation</c> stores a single RotationAngle as a double (rounded to 2 decimal places) 
@@ -187,7 +187,7 @@ public class Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation2D> {
     /// <param name="absValue">Set to <c>True</c> to return the absolute value of the distance</param>
     /// <returns></returns>
     public double DistanceTo(double angle, bool absValue = true) {
-        double[] distances = { angle - (rotationAngle + 360), (angle + 360) - rotationAngle, angle - rotationAngle };
+        double[] distances = { angle - (rotationAngle + 360), angle + 360 - rotationAngle, angle - rotationAngle };
         Array.Sort(distances, (a, b) => { 
             if (Math.Abs(a) == Math.Abs(b)) return 0;
             if (Math.Abs(a) < Math.Abs(b)) return -1;

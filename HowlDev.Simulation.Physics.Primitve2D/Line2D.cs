@@ -2,7 +2,7 @@ using System.Collections;
 using System.Net.Security;
 using System.Runtime.CompilerServices;
 
-namespace Physics2DLibrary;
+namespace HowlDev.Simulation.Physics.Primitve2D;
 
 /// <summary>
 /// This is a collection of 2 <c>Points</c> in an array (see <see cref="Point2D"/>). It contains methods to 
@@ -70,7 +70,7 @@ public class Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumerable<Point
 
     /// <summary>
     /// Takes in an array of length 4 and assigns it in the same order as the coordinate 
-    /// pair constructor <see cref="Line2D.Line2D(double, double, double, double)"/>.
+    /// pair constructor <see cref="Line2D(double, double, double, double)"/>.
     /// </summary>
     /// <param name="incomingPoints"><c>double[]</c> of length 4</param>
     /// <exception cref="ArgumentException"></exception>

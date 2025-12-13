@@ -1,4 +1,6 @@
-namespace Physics2DLibrary.TUnit.RotationClass;
+using HowlDev.Simulation.Physics.Primitve2D;
+
+namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 // Ints in Arguments are a legacy of the way they used to be handled. It's more tests to check at least. 
 public class RotationClassConstraintTests {

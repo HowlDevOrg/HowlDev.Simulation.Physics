@@ -1,4 +1,4 @@
-﻿namespace Physics2DLibrary; 
+﻿namespace HowlDev.Simulation.Physics.Primitve2D; 
 
 /// <summary>
 /// <c>Vector</c> holds a rotation and velocity value, and can move <see cref="Point2D"/> values 

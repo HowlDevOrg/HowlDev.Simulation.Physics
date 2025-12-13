@@ -1,4 +1,4 @@
-﻿namespace Physics2DLibrary;
+﻿namespace HowlDev.Simulation.Physics.Primitve2D;
 
 /// <summary>
 /// Equation holds at most 2 points, returning the slope and Y-intercept of a pair of 
@@ -92,7 +92,7 @@ public class Equation2D : IEquatable<Equation2D>, IComparable<Equation2D> {
             x_Intercept = true;
         } else {
             coefficients[1] = (y2 - y1) / (x2 - x1);
-            coefficients[0] = y1 - (x1 * coefficients[1]);
+            coefficients[0] = y1 - x1 * coefficients[1];
             x_Intercept = false;
         }
     }

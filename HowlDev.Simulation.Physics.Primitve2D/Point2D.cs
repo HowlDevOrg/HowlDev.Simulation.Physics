@@ -1,6 +1,6 @@
 ﻿using System.Net.NetworkInformation;
 
-namespace Physics2DLibrary; 
+namespace HowlDev.Simulation.Physics.Primitve2D; 
 
 /// <summary>
 /// Class <c>Point</c> holds two double coordinates with a few helpful methods.

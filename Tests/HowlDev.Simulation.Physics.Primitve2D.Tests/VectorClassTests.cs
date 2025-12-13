@@ -1,5 +1,6 @@
-﻿using TUnit;
-namespace Physics2DLibrary.TUnit.VectorClass;
+﻿using HowlDev.Simulation.Physics.Primitve2D;
+using TUnit;
+namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 
 public class VectorClassBasicTests {

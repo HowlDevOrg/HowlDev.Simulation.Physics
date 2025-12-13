@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
+using System.Collections;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace Physics2DLibrary;
+namespace HowlDev.Simulation.Physics.Primitve2D;
 
 /// <summary>
 /// <c>VectorObject</c> implements the <c>IPointObject2D</c> interface. It holds a center point and a list of 

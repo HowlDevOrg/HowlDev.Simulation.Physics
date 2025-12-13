@@ -1,6 +1,6 @@
-using Physics2DLibrary;
+using HowlDev.Simulation.Physics.Primitve2D;
 using System.Net.WebSockets;
-namespace Physics2DLibrary.TUnit.LineClass;
+namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 
 public class LineClassBasicTests {

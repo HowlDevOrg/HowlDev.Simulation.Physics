@@ -1,4 +1,6 @@
-namespace Physics2DLibrary.TUnit.EquationClass;
+using HowlDev.Simulation.Physics.Primitve2D;
+
+namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 public class EquationBasicTests {
     [Test]

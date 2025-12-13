@@ -1,4 +1,6 @@
-namespace Physics2DLibrary.TUnit.SortingTests;
+using HowlDev.Simulation.Physics.Primitve2D;
+
+namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 public class RotationClassSorting {
     [Test]

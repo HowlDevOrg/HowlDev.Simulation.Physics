@@ -1,6 +1,7 @@
+using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
 using System.Runtime.CompilerServices;
 
-namespace Physics2DLibrary;
+namespace HowlDev.Simulation.Physics.Primitve2D;
 
 /// <summary>
 /// Extends Lists with Distance filters. 

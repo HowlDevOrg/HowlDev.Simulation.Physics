@@ -1,6 +1,7 @@
-﻿using Physics2DLibrary;
+﻿using HowlDev.Simulation.Physics.Primitve2D;
+using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
 
-namespace Physics2DLibrary.TUnit.AssortedTests;
+namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 public class ListFilteringTests {
     [Test] // need to validate

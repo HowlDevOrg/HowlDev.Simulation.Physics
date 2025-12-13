@@ -1,4 +1,4 @@
-﻿namespace Physics2DLibrary;
+﻿namespace HowlDev.Simulation.Physics.Primitve2D;
 
 /// <summary>
 /// <c>PointObject</c> implements the <c>IPointObject2D</c> interface. It holds a center point and a list of 

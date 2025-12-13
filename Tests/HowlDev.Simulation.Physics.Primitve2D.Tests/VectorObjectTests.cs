@@ -1,5 +1,7 @@
-﻿using TUnit;
-namespace Physics2DLibrary.TUnit.VectorObject;
+﻿using HowlDev.Simulation.Physics.Primitve2D;
+using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
+using TUnit;
+namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 
 public class VectorObjectSimpleConstructorTests {
