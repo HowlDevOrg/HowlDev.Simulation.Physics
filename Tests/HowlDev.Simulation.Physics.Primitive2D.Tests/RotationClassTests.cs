@@ -53,7 +53,7 @@ public class RotationClassConstraintTests {
     }
 
     [Test]
-    public async Task RotationCanBeCopied() {
+    public async Task RotationCanBeCopiedWithoutReference() {
         Rotation2D r1 = new Rotation2D(15);
         Rotation2D r2 = new Rotation2D(r1);
 

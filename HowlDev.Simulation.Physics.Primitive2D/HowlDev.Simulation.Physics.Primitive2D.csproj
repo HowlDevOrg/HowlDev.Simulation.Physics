@@ -1,13 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Version>0.7.4</Version>
+    <TargetFramework>net8.0</TargetFramework>
+    <Version>0.7.5</Version>
     <Authors>Howl Dev</Authors>
     <Description>A compilation of useful 2D coordinate/physics classes.</Description>
+		<Copyright>Copyright (c) Howl Dev 2025</Copyright>
     <PackageTags>physics</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/Cody-Howell/HowlDev.Simulation.Physics</RepositoryUrl>
+		<PackageProjectUrl>https://wiki.codyhowell.dev/sim.physics.primitives</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>_HowlDevLogo.png</PackageIcon>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>

@@ -25,3 +25,11 @@ Holds two coefficient values (for the slope and the y-intercept). Does most of t
 Holds two Point2D objects in an array. Has logic for intersecting lines and retrieving intersecting points. 
 
 Read the wiki (which has links to the package) and get a bunch of class definitions! [Those exist here](https://wiki.codyhowell.dev/2dphysicslibrary).
+
+# Changelog
+
+0.7.5 (12/17/25)
+
+Somehow I don't have a changelog for everything I've done up to this point. Well, I have a bunch of classes, and I'm just working through all the primitives I want to contain. Right now, I'm building it so I can make a simple Asteroids clone, so my work will focus on the primitives I need for that to work. 
+
+Also, testing the workflow. 

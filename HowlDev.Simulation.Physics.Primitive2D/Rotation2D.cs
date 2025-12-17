@@ -205,7 +205,7 @@ public class Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation2D> {
 
     /// <summary>
     /// Returns the closest distance ( &lt;= 180 ) to the given object.
-    /// See <see cref="DistanceTo(int)"/>
+    /// See <see cref="DistanceTo(double, bool)"/>
     /// </summary>
     /// <param name="angle">Angle to compare against</param>
     /// <param name="absValue">Set to <c>True</c> to return the absolute value of the distance</param>
@@ -235,7 +235,7 @@ public class Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation2D> {
     /// <summary>
     /// Averages between this and the "other" parameter by a percentage. 0 maintains the current angle, 
     /// and 1 sets it to the other angle. This just passes through to the other overload.
-    /// See also: <see cref="AverageTo(int, double)"/>
+    /// See also: <see cref="AverageTo(double, double)"/>
     /// </summary>
     /// <param name="other">Rotation to average to</param>
     /// <param name="percent">Range from 0 to 1</param>

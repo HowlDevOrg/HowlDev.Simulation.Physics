@@ -222,9 +222,9 @@ public class Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumerable<Point
         // This method will also be taking the inverse of the slope in the equation of the line, 
         // then min that with the two points. 
         throw new NotImplementedException();
-        Point2D point2D = new Point2D(x, y);
-        return Math.Min(point2D.GetDistance(this[0]),
-                        point2D.GetDistance(this[1]));
+        // Point2D point2D = new Point2D(x, y);
+        // return Math.Min(point2D.GetDistance(this[0]),
+        //                 point2D.GetDistance(this[1]));
     }
 
     /// <summary>
