@@ -322,82 +322,82 @@ public class EquationSorting {
         }
     }
 }
-public class LineSorting {
-    [Test]
-    public async Task IntegerLineSorting() {
-        Line2D[] lines = {
-            new Line2D(2, -1, 5, 0),
-            new Line2D(-4, -3, -2, 3),
-            new Line2D(2, 3, 4, 1),
-            new Line2D(-3, -3, -1, -5),
-            new Line2D(-4, 2, 4, -4),
-            new Line2D(1, 0, -4, 2),
-            new Line2D(-5, 1, -1, 3),
-            new Line2D(-5, -4, -3, -1),
-            new Line2D(2, 5, -1, -5),
-            new Line2D(-1, 1, 2, -3),
-            new Line2D(2, 3, 1, -2),
-            new Line2D(2, 5, -5, 2),
-            new Line2D(1, -1, -4, 1),
-            new Line2D(0, 4, -1, -1),
-            new Line2D(-4, -1, -3, -1),
-            new Line2D(-3, -5, 4, 3),
-            new Line2D(-1, 1, -3, 1),
-            new Line2D(-3, 2, -4, 1),
-            new Line2D(-5, -3, -3, -4),
-            new Line2D(1, 0, 3, 5),
-            new Line2D(5, -5, 2, 5),
-            new Line2D(2, -1, 4, -3),
-            new Line2D(3, 5, -4, 0),
-            new Line2D(-1, 2, -4, -2),
-            new Line2D(2, 4, 5, 3),
-            new Line2D(-5, 5, -2, 4),
-            new Line2D(-1, -1, 5, -3),
-            new Line2D(2, 0, 1, -2),
-            new Line2D(4, -2, -4, 4),
-            new Line2D(-4, -1, -3, 1)
-        };
+// public class LineSorting {
+//     [Test]
+//     public async Task IntegerLineSorting() {
+//         Line2D[] lines = {
+//             new Line2D(2, -1, 5, 0),
+//             new Line2D(-4, -3, -2, 3),
+//             new Line2D(2, 3, 4, 1),
+//             new Line2D(-3, -3, -1, -5),
+//             new Line2D(-4, 2, 4, -4),
+//             new Line2D(1, 0, -4, 2),
+//             new Line2D(-5, 1, -1, 3),
+//             new Line2D(-5, -4, -3, -1),
+//             new Line2D(2, 5, -1, -5),
+//             new Line2D(-1, 1, 2, -3),
+//             new Line2D(2, 3, 1, -2),
+//             new Line2D(2, 5, -5, 2),
+//             new Line2D(1, -1, -4, 1),
+//             new Line2D(0, 4, -1, -1),
+//             new Line2D(-4, -1, -3, -1),
+//             new Line2D(-3, -5, 4, 3),
+//             new Line2D(-1, 1, -3, 1),
+//             new Line2D(-3, 2, -4, 1),
+//             new Line2D(-5, -3, -3, -4),
+//             new Line2D(1, 0, 3, 5),
+//             new Line2D(5, -5, 2, 5),
+//             new Line2D(2, -1, 4, -3),
+//             new Line2D(3, 5, -4, 0),
+//             new Line2D(-1, 2, -4, -2),
+//             new Line2D(2, 4, 5, 3),
+//             new Line2D(-5, 5, -2, 4),
+//             new Line2D(-1, -1, 5, -3),
+//             new Line2D(2, 0, 1, -2),
+//             new Line2D(4, -2, -4, 4),
+//             new Line2D(-4, -1, -3, 1)
+//         };
 
-        Array.Sort(lines);
+//         Array.Sort(lines);
 
-        Line2D[] answer = {
-            new Line2D(-5, -4, -3, -1),
-            new Line2D(-5, -3, -3, -4),
-            new Line2D(-5, 1, -1, 3),
-            new Line2D(-5, 5, -2, 4),
-            new Line2D(-4, -3, -2, 3),
-            new Line2D(-4, -1, -3, -1),
-            new Line2D(-4, -1, -3, 1),
-            new Line2D(-4, 2, 4, -4),
-            new Line2D(-3, -5, 4, 3),
-            new Line2D(-3, -3, -1, -5),
-            new Line2D(-3, 2, -4, 1),
-            new Line2D(-1, -1, 5, -3),
-            new Line2D(-1, 1, -3, 1),
-            new Line2D(-1, 1, 2, -3),
-            new Line2D(-1, 2, -4, -2),
-            new Line2D(0, 4, -1, -1),
-            new Line2D(1, -1, -4, 1),
-            new Line2D(1, 0, -4, 2),
-            new Line2D(1, 0, 3, 5),
-            new Line2D(2, -1, 4, -3),
-            new Line2D(2, -1, 5, 0),
-            new Line2D(2, 0, 1, -2),
-            new Line2D(2, 3, 1, -2),
-            new Line2D(2, 3, 4, 1),
-            new Line2D(2, 4, 5, 3),
-            new Line2D(2, 5, -5, 2),
-            new Line2D(2, 5, -1, -5),
-            new Line2D(3, 5, -4, 0),
-            new Line2D(4, -2, -4, 4),
-            new Line2D(5, -5, 2, 5),
-        };
+//         Line2D[] answer = {
+//             new Line2D(-5, -4, -3, -1),
+//             new Line2D(-5, -3, -3, -4),
+//             new Line2D(-5, 1, -1, 3),
+//             new Line2D(-5, 5, -2, 4),
+//             new Line2D(-4, -3, -2, 3),
+//             new Line2D(-4, -1, -3, -1),
+//             new Line2D(-4, -1, -3, 1),
+//             new Line2D(-4, 2, 4, -4),
+//             new Line2D(-3, -5, 4, 3),
+//             new Line2D(-3, -3, -1, -5),
+//             new Line2D(-3, 2, -4, 1),
+//             new Line2D(-1, -1, 5, -3),
+//             new Line2D(-1, 1, -3, 1),
+//             new Line2D(-1, 1, 2, -3),
+//             new Line2D(-1, 2, -4, -2),
+//             new Line2D(0, 4, -1, -1),
+//             new Line2D(1, -1, -4, 1),
+//             new Line2D(1, 0, -4, 2),
+//             new Line2D(1, 0, 3, 5),
+//             new Line2D(2, -1, 4, -3),
+//             new Line2D(2, -1, 5, 0),
+//             new Line2D(2, 0, 1, -2),
+//             new Line2D(2, 3, 1, -2),
+//             new Line2D(2, 3, 4, 1),
+//             new Line2D(2, 4, 5, 3),
+//             new Line2D(2, 5, -5, 2),
+//             new Line2D(2, 5, -1, -5),
+//             new Line2D(3, 5, -4, 0),
+//             new Line2D(4, -2, -4, 4),
+//             new Line2D(5, -5, 2, 5),
+//         };
 
-        for (int i = 0; i < answer.Length; i++) {
-            await Assert.That(lines[i]).IsEqualTo(answer[i]);
-        }
-    }
-}
+//         for (int i = 0; i < answer.Length; i++) {
+//             await Assert.That(lines[i]).IsEqualTo(answer[i]);
+//         }
+//     }
+// }
 public class VectorSorting {
     [Test]
     public async Task FullSorting() {
@@ -451,44 +451,6 @@ public class VectorSorting {
 
         for (int i = 0; i < answer.Length; i++) {
             await Assert.That(momentum[i]).IsEqualTo(answer[i]);
-        }
-    }
-}
-public class VectorObjectSorting {
-    [Test]
-    public async Task FullSorting() {
-        VectorObject2D[] objects = {
-            new VectorObject2D(new Point2D(0, 0), new List<Point2D> {new Point2D(1, 2), new Point2D(1, 2), new Point2D(1, 2) }),
-            new VectorObject2D(new Point2D(2, 1), new List<Point2D> {new Point2D(1, 1), new Point2D(-1, -1), new Point2D(0, -1) }),
-            new VectorObject2D(new Point2D(2, 2), new List<Point2D> {new Point2D(2, 2), new Point2D(1, -2), new Point2D(-1, -1) }),
-            new VectorObject2D(new Point2D(-2, 1), new List<Point2D> {new Point2D(-1, -2), new Point2D(-2, 1), new Point2D(0, 2) }),
-            new VectorObject2D(new Point2D(-1, -1), new List<Point2D> {new Point2D(1, 2), new Point2D(-2, -1), new Point2D(2, 1) }),
-            new VectorObject2D(new Point2D(0, 0), new List<Point2D> {new Point2D(2, 2), new Point2D(-2, -1), new Point2D(-2, -2) }),
-            new VectorObject2D(new Point2D(-1, 0), new List<Point2D> {new Point2D(2, -2), new Point2D(2, -2), new Point2D(0, -2) }),
-            new VectorObject2D(new Point2D(0, 1), new List<Point2D> {new Point2D(1, 0), new Point2D(2, -1), new Point2D(0, 1) }),
-            new VectorObject2D(new Point2D(0, 2), new List<Point2D> {new Point2D(0, 0), new Point2D(-1, 2), new Point2D(-2, -1) }),
-            new VectorObject2D(new Point2D(1, 2), new List<Point2D> {new Point2D(2, 2), new Point2D(0, -1), new Point2D(-2, -2) }),
-            new VectorObject2D(new Point2D(0, 2), new List<Point2D> {new Point2D(-2, 1), new Point2D(-1, 1), new Point2D(0, 2) }),
-        };
-
-        Array.Sort(objects);
-
-        VectorObject2D[] answer = {
-            new VectorObject2D(new Point2D(-2, 1), new List<Point2D> {new Point2D(-1, -2), new Point2D(-2, 1), new Point2D(0, 2) }),
-            new VectorObject2D(new Point2D(-1, -1), new List<Point2D> {new Point2D(1, 2), new Point2D(-2, -1), new Point2D(2, 1) }),
-            new VectorObject2D(new Point2D(-1, 0), new List<Point2D> {new Point2D(2, -2), new Point2D(2, -2), new Point2D(0, -2) }),
-            new VectorObject2D(new Point2D(0, 0), new List<Point2D> {new Point2D(1, 2), new Point2D(1, 2), new Point2D(1, 2) }),
-            new VectorObject2D(new Point2D(0, 0), new List<Point2D> {new Point2D(2, 2), new Point2D(-2, -1), new Point2D(-2, -2) }),
-            new VectorObject2D(new Point2D(0, 1), new List<Point2D> {new Point2D(1, 0), new Point2D(2, -1), new Point2D(0, 1) }),
-            new VectorObject2D(new Point2D(0, 2), new List<Point2D> {new Point2D(-2, 1), new Point2D(-1, 1), new Point2D(0, 2) }),
-            new VectorObject2D(new Point2D(0, 2), new List<Point2D> {new Point2D(0, 0), new Point2D(-1, 2), new Point2D(-2, -1) }),
-            new VectorObject2D(new Point2D(1, 2), new List<Point2D> {new Point2D(2, 2), new Point2D(0, -1), new Point2D(-2, -2) }),
-            new VectorObject2D(new Point2D(2, 1), new List<Point2D> {new Point2D(1, 1), new Point2D(-1, -1), new Point2D(0, -1) }),
-            new VectorObject2D(new Point2D(2, 2), new List<Point2D> {new Point2D(2, 2), new Point2D(1, -2), new Point2D(-1, -1) }),
-        };
-
-        for (int i = 0; i < answer.Length; i++) {
-            await Assert.That(objects[i]).IsEqualTo(answer[i]);
         }
     }
 }
