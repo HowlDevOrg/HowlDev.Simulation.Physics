@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace HowlDev.Simulation.Physics.Primitve2D;
+namespace HowlDev.Simulation.Physics.Primitive2D;
 
 /// <summary>
 /// This is a collection of 2 <c>Points</c> in an array (see <see cref="Point2D"/>). It contains methods to 

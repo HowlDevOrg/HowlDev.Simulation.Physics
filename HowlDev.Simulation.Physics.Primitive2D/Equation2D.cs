@@ -1,4 +1,4 @@
-﻿namespace HowlDev.Simulation.Physics.Primitve2D;
+﻿namespace HowlDev.Simulation.Physics.Primitive2D;
 
 /// <summary>
 /// Equation holds at most 2 points, returning the slope and Y-intercept of a pair of 

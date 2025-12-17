@@ -1,4 +1,4 @@
-﻿namespace HowlDev.Simulation.Physics.Primitve2D;
+﻿namespace HowlDev.Simulation.Physics.Primitive2D;
 
 /// <summary>
 /// Class <c>Rotation</c> stores a single RotationAngle as a double (rounded to 2 decimal places) 

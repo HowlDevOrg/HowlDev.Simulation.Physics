@@ -1,4 +1,4 @@
-namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
+namespace HowlDev.Simulation.Physics.Primitive2D.Tests;
 
 
 public class LineClassBasicTests {

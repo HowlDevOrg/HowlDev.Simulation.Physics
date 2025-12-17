@@ -1,4 +1,4 @@
-﻿namespace HowlDev.Simulation.Physics.Primitve2D;
+﻿namespace HowlDev.Simulation.Physics.Primitive2D;
 
 /// <summary>
 /// Class <c>Point</c> holds two double coordinates with a few helpful methods.
