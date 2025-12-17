@@ -48,7 +48,7 @@ public class Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation2D> {
     /// of 1).
     /// </value>
     public double Y_Coord => yCoord;
-    
+
     /// <summary>
     /// A point on the Unit Circle. 
     /// </summary>
@@ -188,7 +188,7 @@ public class Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation2D> {
     /// <returns></returns>
     public double DistanceTo(double angle, bool absValue = true) {
         double[] distances = { angle - (rotationAngle + 360), angle + 360 - rotationAngle, angle - rotationAngle };
-        Array.Sort(distances, (a, b) => { 
+        Array.Sort(distances, (a, b) => {
             if (Math.Abs(a) == Math.Abs(b)) return 0;
             if (Math.Abs(a) < Math.Abs(b)) return -1;
             return 1;

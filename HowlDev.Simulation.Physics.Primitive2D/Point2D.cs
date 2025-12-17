@@ -1,13 +1,11 @@
-﻿using System.Net.NetworkInformation;
-
-namespace HowlDev.Simulation.Physics.Primitve2D; 
+﻿namespace HowlDev.Simulation.Physics.Primitve2D;
 
 /// <summary>
 /// Class <c>Point</c> holds two double coordinates with a few helpful methods.
 /// </summary>
 public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     private double x;
-    private double y; 
+    private double y;
 
     /// <summary>
     /// Returns the stored X coordinate.
@@ -31,7 +29,8 @@ public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     public (double x, double y) Pair {
         get {
             return (x, y);
-        } set {
+        }
+        set {
             x = value.x;
             y = value.y;
         }
@@ -220,7 +219,7 @@ public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     public override bool Equals(object? obj) {
         return base.Equals(obj);
     }
-    
+
     /// <summary>
     /// Get the combined hash code of the two points on the plane. 
     /// </summary>

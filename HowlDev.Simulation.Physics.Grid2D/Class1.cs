@@ -1,7 +1,5 @@
-﻿namespace HowlDev.Simulation.Physics.Grid2D
-{
-    public class Class1
-    {
+﻿namespace HowlDev.Simulation.Physics.Grid2D {
+    public class Class1 {
 
     }
 }

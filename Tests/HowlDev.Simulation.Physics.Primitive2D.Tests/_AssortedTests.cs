@@ -1,5 +1,4 @@
-﻿using HowlDev.Simulation.Physics.Primitve2D;
-using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
+﻿using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
 
 namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 

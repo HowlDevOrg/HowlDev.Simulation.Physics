@@ -1,5 +1,4 @@
 using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
-using System.Runtime.CompilerServices;
 
 namespace HowlDev.Simulation.Physics.Primitve2D;
 

@@ -1,4 +1,4 @@
-﻿namespace HowlDev.Simulation.Physics.Primitve2D; 
+﻿namespace HowlDev.Simulation.Physics.Primitve2D;
 
 /// <summary>
 /// <c>Vector</c> holds a rotation and velocity value, and can move <see cref="Point2D"/> values 
@@ -104,7 +104,7 @@ public class Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
     /// Adds a given <c>Point</c> and the inverted rotation value scaled by the velocity value. Returns a new reference.
     /// </summary>
     public static Point2D operator -(Point2D point, Vector2D momentum) {
-        Point2D momentumPoint = momentum.Rotation * momentum.Velocity; 
+        Point2D momentumPoint = momentum.Rotation * momentum.Velocity;
         return new Point2D(point.X - momentumPoint.X, point.Y - momentumPoint.Y);
     }
 

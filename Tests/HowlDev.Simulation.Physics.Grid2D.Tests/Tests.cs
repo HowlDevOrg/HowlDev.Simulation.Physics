@@ -1,18 +1,14 @@
-﻿namespace HowlDev.Simulation.Physics.Grid2D.Tests
-{
-    public class Tests
-    {
+﻿namespace HowlDev.Simulation.Physics.Grid2D.Tests {
+    public class Tests {
         [Test]
-        public void Basic()
-        {
+        public void Basic() {
             Console.WriteLine("This is a basic test");
         }
 
         [Test]
         [Arguments(1, 2, 3)]
         [Arguments(2, 3, 5)]
-        public async Task DataDrivenArguments(int a, int b, int c)
-        {
+        public async Task DataDrivenArguments(int a, int b, int c) {
             Console.WriteLine("This one can accept arguments from an attribute");
 
             var result = a + b;

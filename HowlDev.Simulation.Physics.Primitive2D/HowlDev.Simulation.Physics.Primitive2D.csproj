@@ -7,12 +7,14 @@
     <Description>A compilation of useful 2D coordinate/physics classes.</Description>
     <PackageTags>physics</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/Cody-Howell/2D-Physics-Library</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Cody-Howell/HowlDev.Simulation.Physics</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>_HowlDevLogo.png</PackageIcon>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

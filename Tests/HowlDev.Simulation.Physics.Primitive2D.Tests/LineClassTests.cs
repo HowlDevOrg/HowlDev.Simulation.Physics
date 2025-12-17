@@ -1,5 +1,3 @@
-using HowlDev.Simulation.Physics.Primitve2D;
-using System.Net.WebSockets;
 namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 
@@ -141,7 +139,3 @@ public class LineClassIntersectionAndPointTests {
         await Assert.That(l1.ContainsPoint(new Point2D(pointX, pointY))).IsEqualTo(containsPoint);
     }
 }
-
-
-
-

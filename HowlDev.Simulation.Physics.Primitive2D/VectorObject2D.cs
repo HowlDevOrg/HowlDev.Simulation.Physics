@@ -1,7 +1,5 @@
 ﻿using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
 using System.Collections;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace HowlDev.Simulation.Physics.Primitve2D;
 
@@ -140,7 +138,7 @@ public class VectorObject2D : IPointObject2D, IComparable<VectorObject2D>, IEqua
     /// </summary>
     public int CompareTo(VectorObject2D? other) {
         if (other is null) return 0;
-        
+
         int pointCheck = centerPoint.CompareTo(other.centerPoint);
         if (pointCheck != 0) return pointCheck;
 
@@ -191,7 +189,7 @@ public class VectorObject2D : IPointObject2D, IComparable<VectorObject2D>, IEqua
 
     private IEnumerator<Line2D> LineEnumerator() {
         List<Point2D> points = new List<Point2D>(this); // Now THIS is awesome shorthand.
-        
+
         for (int i = 0; i < points.Count - 1; i++) {
             yield return new Line2D(points[i], points[(i + 1) % points.Count]);
         }

@@ -1,5 +1,3 @@
-using HowlDev.Simulation.Physics.Primitve2D;
-
 namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 // Ints in Arguments are a legacy of the way they used to be handled. It's more tests to check at least. 
@@ -559,7 +557,7 @@ public class RotationClassSmallTests {
         a1.RotationAngle = 0;
 
         if (!a1) { // continue
-                   } else { throw new Exception("a1 is not false"); }
+        } else { throw new Exception("a1 is not false"); }
     }
 
     [Test]

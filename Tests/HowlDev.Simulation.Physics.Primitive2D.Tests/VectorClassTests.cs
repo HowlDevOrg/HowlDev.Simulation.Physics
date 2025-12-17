@@ -1,6 +1,4 @@
-﻿using HowlDev.Simulation.Physics.Primitve2D;
-using TUnit;
-namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
+﻿namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 
 public class VectorClassBasicTests {
@@ -179,5 +177,3 @@ public class VectorClassCoordinateAssignmentTests {
         await Assert.That(vector.Velocity - outVelocity).IsLessThanOrEqualTo(0.01);
     }
 }
-
-

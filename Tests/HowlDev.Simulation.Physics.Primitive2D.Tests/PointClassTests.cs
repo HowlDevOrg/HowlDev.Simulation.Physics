@@ -1,6 +1,4 @@
-﻿using HowlDev.Simulation.Physics.Primitve2D;
-
-namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
+﻿namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 public class PointClassBaseTests {
     [Test]
     public async Task TestPointClassPair() {
@@ -218,5 +216,3 @@ public class PointClassOperatorTests {
         await Assert.That(answer.Y).IsEqualTo(yOut);
     }
 }
-
-

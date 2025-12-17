@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
-
-namespace HowlDev.Simulation.Physics.Primitve2D.Interfaces;
+﻿namespace HowlDev.Simulation.Physics.Primitve2D.Interfaces;
 
 /// <summary>
 /// This interface is for 2D objects that contain a list of points. The methods here handle

@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Net.Security;
-using System.Runtime.CompilerServices;
 
 namespace HowlDev.Simulation.Physics.Primitve2D;
 
@@ -84,7 +82,7 @@ public class Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumerable<Point
     /// <summary>
     /// Takes in 2 <c>Point</c>s and assigns them to the array. Copies reference directly.
     /// </summary>
-    public Line2D(Point2D p1, Point2D p2) { 
+    public Line2D(Point2D p1, Point2D p2) {
         points[0] = p1;
         points[1] = p2;
     }
@@ -306,7 +304,7 @@ public class Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumerable<Point
     /// </summary>
     /// <returns><include file="_SharedXML.xml" path='doc/member[@name="Phrases.Compare.Return"]/*'/></returns>
     public int CompareTo(Line2D? other) {
-        if (other is null) return 0; 
+        if (other is null) return 0;
 
         int value = points[0].CompareTo(other.Points[0]);
         if (value == 0) {

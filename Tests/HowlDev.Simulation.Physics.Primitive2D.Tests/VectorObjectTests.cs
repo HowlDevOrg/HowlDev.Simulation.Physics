@@ -1,6 +1,4 @@
-﻿using HowlDev.Simulation.Physics.Primitve2D;
-using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
-using TUnit;
+﻿using HowlDev.Simulation.Physics.Primitve2D.Interfaces;
 namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 
@@ -50,11 +48,11 @@ public class VectorObjectEnumerationTests {
 
     [Test]
     public async Task LineEnumerator() {
-        VectorObject2D obj = new VectorObject2D(new Point2D(0, 0), new List<Point2D> { 
+        VectorObject2D obj = new VectorObject2D(new Point2D(0, 0), new List<Point2D> {
             new Point2D(1, 0), new Point2D(0, 1),
             new Point2D(-1, 0), new Point2D(0, -1)
         });
-        Line2D[] answers = { 
+        Line2D[] answers = {
             new Line2D(1, 0, 0, 1),
             new Line2D(0, 1, -1, 0),
             new Line2D(-1, 0, 0, -1),
@@ -106,7 +104,7 @@ public class VectorObjectRotateByTests {
     [Test]
     public async Task EmptyTest() {
         VectorObject2D obj = new VectorObject2D(
-            new Point2D(0, 0), 
+            new Point2D(0, 0),
             new List<Vector2D> {
                 new Vector2D(0, 1),
                 new Vector2D(90, 1),

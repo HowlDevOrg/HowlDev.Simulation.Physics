@@ -1,5 +1,3 @@
-using HowlDev.Simulation.Physics.Primitve2D;
-
 namespace HowlDev.Simulation.Physics.Primitve2D.Tests;
 
 public class EquationBasicTests {
@@ -403,4 +401,3 @@ public class VerticalEquationTests {
         await Assert.That(e1.PointIsOnLine(x, y)).IsEqualTo(isOnLine);
     }
 }
-
