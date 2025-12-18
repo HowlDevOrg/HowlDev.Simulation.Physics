@@ -33,7 +33,7 @@ public class EquationBasicTests {
         Equation2D e1 = new Equation2D(15, 10);
         Equation2D e2 = new Equation2D(e1);
 
-        e2.UpdateCoefficient(0, 25);
+        e2 = e2.WithCoefficient(0, 25);
         await Assert.That(e1[0]).IsEqualTo(10);
         await Assert.That(e2[0]).IsEqualTo(25);
     }
@@ -76,16 +76,15 @@ public class EquationCoordinateAssignmentTests {
     [Arguments(5.47, -2.41, -4.69, 3.91, -0.62, 0.98)]
     public async Task ComplexAssignmentTests(
         double x1, double y1, double x2, double y2, double slope, double intercept) {
-        Equation2D equation = new Equation2D();
-        equation.AssignToCoordinates(x1, y1, x2, y2);
+        Equation2D equation = Equation2D.FromCoordinates(x1, y1, x2, y2);
         await Assert.That(equation[0] - intercept).IsLessThanOrEqualTo(0.1);
         await Assert.That(equation[1] - slope).IsLessThanOrEqualTo(0.1);
 
-        equation.AssignToCoordinates(new Point2D(x1, y1), new Point2D(x2, y2));
+        equation = Equation2D.FromCoordinates(new Point2D(x1, y1), new Point2D(x2, y2));
         await Assert.That(equation[0] - intercept).IsLessThanOrEqualTo(0.1);
         await Assert.That(equation[1] - slope).IsLessThanOrEqualTo(0.1);
 
-        equation.AssignToCoordinates(new Line2D(x1, y1, x2, y2));
+        equation = Equation2D.FromCoordinates(new Line2D(x1, y1, x2, y2));
         await Assert.That(equation[0] - intercept).IsLessThanOrEqualTo(0.1);
         await Assert.That(equation[1] - slope).IsLessThanOrEqualTo(0.1);
     }
@@ -107,7 +106,7 @@ public class EquationAssignToPointTests {
     public async Task SlopeIsOne(
         double x, double y, double expIntercept) {
         Equation2D e = new Equation2D(1, 0);
-        e.AssignToPoint(x, y);
+        e = e.WithPoint(x, y);
         await Assert.That(e.Intercept - expIntercept).IsLessThanOrEqualTo(0.02);
         await Assert.That(e.Slope).IsEqualTo(1);
         await Assert.That(e.PointIsOnLine(x, y)).IsTrue();
@@ -127,7 +126,7 @@ public class EquationAssignToPointTests {
     public async Task VariableSlope(
         double x, double y, double slope, double expIntercept) {
         Equation2D e = new Equation2D(slope, 0);
-        e.AssignToPoint(new Point2D(x, y));
+        e = e.WithPoint(new Point2D(x, y));
         await Assert.That(e.Intercept - expIntercept).IsLessThanOrEqualTo(0.02);
         await Assert.That(e.Slope).IsEqualTo(slope);
         await Assert.That(e.PointIsOnLine(x, y)).IsTrue();
