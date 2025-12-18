@@ -289,6 +289,21 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     public static double AngleOf(Point2D point) {
         return AngleOf(point.X, point.Y);
     }
+
+    /// <summary>
+    /// Suggested by AI. I think it could be a useful method. <br/>
+    /// Returns true if the distance to the other value is less or equal to the tolerance.  
+    /// </summary>
+    public bool IsCloseTo(Rotation2D other, double tolerance)
+        => DistanceTo(other) <= tolerance;
+
+    /// <summary>
+    /// In-place mutation. For performance benefits only if needed. 
+    /// </summary>
+    public static void RotateBy(ref Rotation2D rotation, double delta)
+    {
+        rotation = new Rotation2D(rotation.RotationAngle + delta);
+    }
     #endregion
     #region Operators
     /// <summary>

@@ -300,6 +300,22 @@ public class RotationClassDistanceTests {
         await Assert.That(r1.DistanceTo(r2, true)).IsEqualTo(Math.Abs(expDistance));
         await Assert.That(r1.DistanceTo(r2, false)).IsEqualTo(expDistance);
     }
+
+    [Test]
+    [Arguments(0, 0, true, 0)]
+    [Arguments(0, 5, true, 5)]
+    [Arguments(0, 5, false, 4)]
+    [Arguments(0, 355, true, 5)]
+    [Arguments(0, 355, false, 4)]
+    [Arguments(90, 180, true, 90)]
+    [Arguments(90, 180, false, 5)]
+    public async Task IsCloseTo(
+    int rot1, int rot2, bool isClose, int threshold) {
+        Rotation2D r1 = new Rotation2D(rot1);
+        Rotation2D r2 = new Rotation2D(rot2);
+
+        await Assert.That(r1.IsCloseTo(r2, threshold)).IsEqualTo(isClose);
+    }
 }
 public class RotationClassAverageToTests {
     [Test]

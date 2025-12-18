@@ -28,6 +28,12 @@ Read the wiki (which has links to the package) and get a bunch of class definiti
 
 # Changelog
 
+0.8 (12/18/25)
+
+- BREAKING CHANGE
+    - Changed Rotation, Point, Vector, Line, and Equation to Value types (structs) because I was foolish and it's what I should have done in the first place. 
+        - I do kinda dislike how the API turned out, but I kept all the methods I wanted to, so...
+
 0.7.5 (12/17/25)
 
 Somehow I don't have a changelog for everything I've done up to this point. Well, I have a bunch of classes, and I'm just working through all the primitives I want to contain. Right now, I'm building it so I can make a simple Asteroids clone, so my work will focus on the primitives I need for that to work. 
