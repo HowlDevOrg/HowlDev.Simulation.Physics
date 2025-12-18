@@ -1,40 +1,26 @@
 ﻿namespace HowlDev.Simulation.Physics.Primitive2D;
 
 /// <summary>
-/// Class <c>Point</c> holds two double coordinates with a few helpful methods.
+/// Readonly struct <c>Point</c> holds two double coordinates with a few helpful methods.
 /// </summary>
-public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
-    private double x;
-    private double y;
+public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
+    private readonly double x;
+    private readonly double y;
 
     /// <summary>
     /// Returns the stored X coordinate.
     /// </summary>
-    public double X {
-        get { return x; }
-        set { x = value; }
-    }
+    public double X => x;
 
     /// <summary>
     /// Returns the stored Y coordinate.
     /// </summary>
-    public double Y {
-        get { return y; }
-        set { y = value; }
-    }
+    public double Y => y;
 
     /// <summary>
     /// Property for handling tuples of data
     /// </summary>
-    public (double x, double y) Pair {
-        get {
-            return (x, y);
-        }
-        set {
-            x = value.x;
-            y = value.y;
-        }
-    }
+    public (double x, double y) Pair => (x, y);
 
     /// <summary>
     /// Default constructor. Sets to (0, 0).
@@ -59,14 +45,16 @@ public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     /// </summary>
     /// <param name="point">(X, Y) coordinate</param>
     public Point2D((double x, double y) point) {
-        Pair = point;
+        x = point.x;
+        y = point.y;
     }
 
     /// <summary>
     /// <c>Point</c> duplicator constructor.
     /// </summary>
     public Point2D(Point2D point) {
-        Pair = point.Pair;
+        x = point.x;
+        y = point.y;
     }
 
     /// <summary>
@@ -101,26 +89,27 @@ public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     }
 
     /// <summary>
-    /// Assigns from a coordinate pair, the rotation scaled from that point. 
+    /// Returns a new point from a coordinate pair, the rotation scaled from that point. 
     /// </summary>
     /// <param name="x">Coordinate X</param>
     /// <param name="y">Coordinate Y</param>
     /// <param name="r"><c>Rotation</c> value</param>
     /// <param name="scalar">Scalar amount</param>
-    public void AssignPoint(double x, double y, Rotation2D r, double scalar) {
+    /// <returns>A new Point2D with the calculated position</returns>
+    public Point2D WithRotation(double x, double y, Rotation2D r, double scalar) {
         Point2D newPoint = r * scalar;
-        this.x += newPoint.x + x;
-        this.y += newPoint.y + y;
+        return new Point2D(this.x + newPoint.x + x, this.y + newPoint.y + y);
     }
 
     /// <summary>
-    /// Assigns this point with a rotation value and a scalar amount
+    /// Returns a new point with a rotation value and a scalar amount
     /// </summary>
     /// <param name="p">Point to assign from</param>
     /// <param name="r">Rotation to rotate by</param>
     /// <param name="scalar">Scalar to scale from</param>
-    public void AssignPoint(Point2D p, Rotation2D r, double scalar) {
-        AssignPoint(p.X, p.Y, r, scalar);
+    /// <returns>A new Point2D with the calculated position</returns>
+    public Point2D WithRotation(Point2D p, Rotation2D r, double scalar) {
+        return WithRotation(p.X, p.Y, r, scalar);
     }
 
     /// <summary>
@@ -192,8 +181,7 @@ public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     /// <summary>
     /// <include file="_SharedXML.xml" path='doc/member[@name="Phrases.Implementation.Equatable"]/*'/>
     /// </summary>
-    public bool Equals(Point2D? other) {
-        if (other is null) return false;
+    public bool Equals(Point2D other) {
         return other.x == x && other.y == y;
     }
 
@@ -201,9 +189,7 @@ public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     /// Sorts by X coord, then by Y. 
     /// </summary>
     /// <returns><include file="_SharedXML.xml" path='doc/member[@name="Phrases.Compare.Return"]/*'/></returns>
-    public int CompareTo(Point2D? other) {
-        if (other is null) return 0;
-
+    public int CompareTo(Point2D other) {
         int xCoord = x.CompareTo(other.x);
         if (xCoord == 0) {
             return y.CompareTo(other.y);
@@ -212,10 +198,10 @@ public class Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     }
 
     /// <summary>
-    /// <include file="_SharedXML.xml" path='doc/member[@name="Phrases.Overriden.Equals"]/*'/> <see cref="Equals(Point2D?)"/>.
+    /// <include file="_SharedXML.xml" path='doc/member[@name="Phrases.Overriden.Equals"]/*'/> <see cref="Equals(Point2D)"/>.
     /// </summary>
     public override bool Equals(object? obj) {
-        return base.Equals(obj);
+        return obj is Point2D other && Equals(other);
     }
 
     /// <summary>

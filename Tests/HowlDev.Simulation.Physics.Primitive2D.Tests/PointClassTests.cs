@@ -2,8 +2,7 @@
 public class PointClassBaseTests {
     [Test]
     public async Task TestPointClassPair() {
-        Point2D p = new Point2D();
-        p.Pair = (1.2, 3.4);
+        Point2D p = new Point2D((1.2, 3.4));
         await Assert.That(p.X).IsEqualTo(1.2);
         await Assert.That(p.Y).IsEqualTo(3.4);
     }
@@ -104,8 +103,7 @@ public class PointClassAssignPointTests {
     public async Task AssignPointTests(
         double x1, double x2, int angle, double scalar, double pointX, double pointY) {
         Point2D p = new Point2D();
-        p.AssignPoint(x1, x2, new Rotation2D(angle), scalar);
-        using var _ = Assert.Multiple();
+        p = p.WithRotation(x1, x2, new Rotation2D(angle), scalar);
 
         await Assert.That(Math.Abs(p.X - pointX)).IsLessThanOrEqualTo(0.01);
         await Assert.That(Math.Abs(p.Y - pointY)).IsLessThanOrEqualTo(0.01);
@@ -117,7 +115,7 @@ public class PointClassAssignPointTests {
     double x1, double x2, int angle, double scalar, double pointX, double pointY) {
         Point2D p = new Point2D();
         Point2D innerPoint = new Point2D(x1, x2);
-        p.AssignPoint(innerPoint, new Rotation2D(angle), scalar);
+        p = p.WithRotation(innerPoint, new Rotation2D(angle), scalar);
         await Assert.That(Math.Abs(p.X - pointX)).IsLessThanOrEqualTo(0.01);
         await Assert.That(Math.Abs(p.Y - pointY)).IsLessThanOrEqualTo(0.01);
     }

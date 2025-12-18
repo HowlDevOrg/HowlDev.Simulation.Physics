@@ -199,22 +199,22 @@ public class EquationIntersectionPointTests {
         Equation2D e2 = new Equation2D(slope2, intercept2);
         Point2D? answer = e1.IntersectionPoint(e2);
 
-        if (answer is null) {
+        if (!answer.HasValue) {
             await Assert.That(isNull).IsTrue();
         } else {
             await Assert.That(isNull).IsFalse();
-            await Assert.That(answer.X - pointX).IsLessThanOrEqualTo(0.1);
-            await Assert.That(answer.Y - pointY).IsLessThanOrEqualTo(0.1);
+            await Assert.That(answer.Value.X - pointX).IsLessThanOrEqualTo(0.1);
+            await Assert.That(answer.Value.Y - pointY).IsLessThanOrEqualTo(0.1);
         }
 
         answer = e1 ^ e2;
 
-        if (answer is null) {
+        if (!answer.HasValue) {
             await Assert.That(isNull).IsTrue();
         } else {
             await Assert.That(isNull).IsFalse();
-            await Assert.That(answer.X - pointX).IsLessThanOrEqualTo(0.1);
-            await Assert.That(answer.Y - pointY).IsLessThanOrEqualTo(0.1);
+            await Assert.That(answer.Value.X - pointX).IsLessThanOrEqualTo(0.1);
+            await Assert.That(answer.Value.Y - pointY).IsLessThanOrEqualTo(0.1);
         }
     }
 }
@@ -372,9 +372,9 @@ public class VerticalEquationTests {
         Equation2D e2 = new Equation2D(5, 5, 5, 0);
 
         Point2D? answer = e1.IntersectionPoint(e2);
-        if (answer is not null) {
-            await Assert.That(answer.X - intersectionX).IsLessThanOrEqualTo(0.1);
-            await Assert.That(answer.Y - intersectionY).IsLessThanOrEqualTo(0.1);
+        if (answer.HasValue) {
+            await Assert.That(answer.Value.X - intersectionX).IsLessThanOrEqualTo(0.1);
+            await Assert.That(answer.Value.Y - intersectionY).IsLessThanOrEqualTo(0.1);
         }
     }
 

@@ -244,11 +244,12 @@ public class Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumerable<Point
         Equation2D e2 = new Equation2D(l2);
         Point2D? point = e1.IntersectionPoint(e2);
 
-        if (point is null) { return null; }
-        if (point.X < l1.MinX || point.X < l2.MinX ||
-            point.X > l1.MaxX || point.X > l2.MaxX ||
-            point.Y < l1.MinY || point.Y < l2.MinY ||
-            point.Y > l1.MaxY || point.Y > l2.MaxY) {
+        if (!point.HasValue) { return null; }
+        Point2D p = point.Value;
+        if (p.X < l1.MinX || p.X < l2.MinX ||
+            p.X > l1.MaxX || p.X > l2.MaxX ||
+            p.Y < l1.MinY || p.Y < l2.MinY ||
+            p.Y > l1.MaxY || p.Y > l2.MaxY) {
             return null;
         }
         return point;

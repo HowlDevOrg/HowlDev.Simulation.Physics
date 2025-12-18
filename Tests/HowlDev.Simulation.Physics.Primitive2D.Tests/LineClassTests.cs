@@ -118,9 +118,9 @@ public class LineClassIntersectionAndPointTests {
         Line2D l2 = new Line2D(l2x1, l2y1, l2x2, l2y2);
         Point2D? answer = Line2D.IntersectionPoint(l1, l2);
 
-        if (answer is not null) {
-            await Assert.That(answer.X - pointX).IsLessThanOrEqualTo(0.1);
-            await Assert.That(answer.Y - pointY).IsLessThanOrEqualTo(0.1);
+        if (answer.HasValue) {
+            await Assert.That(answer.Value.X - pointX).IsLessThanOrEqualTo(0.1);
+            await Assert.That(answer.Value.Y - pointY).IsLessThanOrEqualTo(0.1);
             await Assert.That(intersects).IsTrue();
         } else {
             await Assert.That(intersects).IsFalse();
