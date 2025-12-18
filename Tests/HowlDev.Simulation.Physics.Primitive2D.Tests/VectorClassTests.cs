@@ -26,12 +26,12 @@ public class VectorClassBasicTests {
     [Test]
     public async Task UpdateTests() {
         Vector2D m1 = new Vector2D();
-        m1.UpdateRotation(15);
-        m1.UpdateVelocity(2.2);
+        m1 = m1.WithRotation(15);
+        m1 = m1.WithVelocity(2.2);
         await Assert.That(m1.Rotation.RotationAngle).IsEqualTo(15);
         await Assert.That(m1.Velocity).IsEqualTo(2.2);
 
-        m1.UpdateRotation(new Rotation2D(25));
+        m1 = m1.WithRotation(new Rotation2D(25));
         await Assert.That(m1.Rotation.RotationAngle).IsEqualTo(25);
     }
 }
@@ -117,8 +117,7 @@ public class VectorClassCoordinateAssignmentTests {
     [Arguments(0, -1, 270, 1)]
     public async Task SimpleCoordinateTests(
         double x, double y, int outRotation, double outVelocity) {
-        Vector2D m = new Vector2D();
-        m.AssignToCoordinates(x, y);
+        Vector2D m = Vector2D.FromCoordinates(x, y);
         await Assert.That(m.Rotation.RotationAngle).IsEqualTo(outRotation);
         await Assert.That(m.Velocity).IsEqualTo(outVelocity);
     }
@@ -146,8 +145,7 @@ public class VectorClassCoordinateAssignmentTests {
     [Arguments(8.5, -3.0, 340.56, 9.0)]
     public async Task ComplexCoordinateTests(
     double x, double y, double outRotation, double outVelocity) {
-        Vector2D m = new Vector2D();
-        m.AssignToCoordinates(new Point2D(x, y));
+        Vector2D m = Vector2D.FromCoordinates(new Point2D(x, y));
 
         await Assert.That(m.Rotation.RotationAngle).IsEqualTo(outRotation);
         await Assert.That(m.Velocity - outVelocity).IsLessThanOrEqualTo(0.1);
@@ -166,13 +164,11 @@ public class VectorClassCoordinateAssignmentTests {
     [Arguments(5.18, 4.73, 3.38, -1.92, 254.85, 6.88)]
     public async Task TwoPointCoordinateTests(
         double x1, double y1, double x2, double y2, double outRotation, double outVelocity) {
-        Vector2D vector = new Vector2D();
-        vector.AssignToCoordinates(x1, y1, x2, y2);
+        Vector2D vector = Vector2D.FromCoordinates(x1, y1, x2, y2);
         await Assert.That(vector.Rotation.RotationAngle).IsEqualTo(outRotation);
         await Assert.That(vector.Velocity - outVelocity).IsLessThanOrEqualTo(0.01);
 
-        vector = new Vector2D();
-        vector.AssignToCoordinates(new Point2D(x1, y1), new Point2D(x2, y2));
+        vector = Vector2D.FromCoordinates(new Point2D(x1, y1), new Point2D(x2, y2));
         await Assert.That(vector.Rotation.RotationAngle).IsEqualTo(outRotation);
         await Assert.That(vector.Velocity - outVelocity).IsLessThanOrEqualTo(0.01);
     }

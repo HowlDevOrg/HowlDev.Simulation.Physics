@@ -1,22 +1,22 @@
 ﻿namespace HowlDev.Simulation.Physics.Primitive2D;
 
 /// <summary>
-/// <c>Vector</c> holds a rotation and velocity value, and can move <see cref="Point2D"/> values 
+/// Readonly struct <c>Vector</c> holds a rotation and velocity value, and can move <see cref="Point2D"/> values 
 /// by those parameters. 
 /// </summary>
-public class Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
-    private Rotation2D rotation;
-    private double velocity;
+public readonly struct Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
+    private readonly Rotation2D rotation;
+    private readonly double velocity;
 
     /// <summary>
     /// <c>Rotation</c> of the momentum object. 
     /// </summary>
-    public Rotation2D Rotation { get { return rotation; } }
+    public Rotation2D Rotation => rotation;
 
     /// <summary>
     /// Velocity (speed per unit of time).
     /// </summary>
-    public double Velocity { get { return velocity; } }
+    public double Velocity => velocity;
 
     /// <summary>
     /// Assigns a default <see cref="Rotation2D"/> constructor and velocity to <c>0.0</c>.
@@ -43,53 +43,61 @@ public class Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
     }
 
     /// <summary>
-    /// Updates the <c>Rotation</c> with a new reference at the angle specified.
+    /// Returns a new Vector2D with the updated rotation at the angle specified.
     /// </summary>
-    public void UpdateRotation(double rotationInt) {
-        rotation = new Rotation2D(rotationInt);
+    /// <returns>A new Vector2D with the updated rotation</returns>
+    public Vector2D WithRotation(double rotationInt) {
+        return new Vector2D(rotationInt, velocity);
     }
 
     /// <summary>
-    /// Updates the <c>Rotation</c> with a new reference by duplicating the object. 
+    /// Returns a new Vector2D with the updated rotation by duplicating the object. 
     /// </summary>
-    public void UpdateRotation(Rotation2D rotationObject) {
-        UpdateRotation(rotationObject.RotationAngle);
+    /// <returns>A new Vector2D with the updated rotation</returns>
+    public Vector2D WithRotation(Rotation2D rotationObject) {
+        return WithRotation(rotationObject.RotationAngle);
     }
 
     /// <summary>
-    /// Updates the Velocity value directly.
+    /// Returns a new Vector2D with the updated velocity value.
     /// </summary>
-    public void UpdateVelocity(double velocityDouble) {
-        velocity = velocityDouble;
+    /// <returns>A new Vector2D with the updated velocity</returns>
+    public Vector2D WithVelocity(double velocityDouble) {
+        return new Vector2D(rotation, velocityDouble);
     }
 
     /// <summary>
-    /// Assigns the <c>Rotation</c> and Velocity values to that point. 
+    /// Creates a Vector2D with rotation and velocity from coordinates. 
     /// </summary>
-    public void AssignToCoordinates(double x, double y) {
-        rotation = Rotation2D.FromCoordinates(x, y);
-        velocity = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+    /// <returns>A new Vector2D with calculated rotation and velocity</returns>
+    public static Vector2D FromCoordinates(double x, double y) {
+        Rotation2D rot = Rotation2D.FromCoordinates(x, y);
+        double vel = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+        return new Vector2D(rot, vel);
     }
 
     /// <summary>
-    /// Assigns the <c>Rotation</c> and Velocity values to that <c>Point</c>. 
+    /// Creates a Vector2D with rotation and velocity from a <c>Point</c>. 
     /// </summary>
-    public void AssignToCoordinates(Point2D point) {
-        AssignToCoordinates(point.X, point.Y);
+    /// <returns>A new Vector2D with calculated rotation and velocity</returns>
+    public static Vector2D FromCoordinates(Point2D point) {
+        return FromCoordinates(point.X, point.Y);
     }
 
     /// <summary>
-    /// Assigns the vector from the first to the second point.
+    /// Creates a Vector2D from the first to the second point.
     /// </summary>
-    public void AssignToCoordinates(double x1, double y1, double x2, double y2) {
-        AssignToCoordinates(x2 - x1, y2 - y1);
+    /// <returns>A new Vector2D representing the vector between points</returns>
+    public static Vector2D FromCoordinates(double x1, double y1, double x2, double y2) {
+        return FromCoordinates(x2 - x1, y2 - y1);
     }
 
     /// <summary>
-    /// Assigns the vector from the first to the second Point.
+    /// Creates a Vector2D from the first to the second Point.
     /// </summary>
-    public void AssignToCoordinates(Point2D point1, Point2D point2) {
-        AssignToCoordinates(point2.X - point1.X, point2.Y - point1.Y);
+    /// <returns>A new Vector2D representing the vector between points</returns>
+    public static Vector2D FromCoordinates(Point2D point1, Point2D point2) {
+        return FromCoordinates(point2.X - point1.X, point2.Y - point1.Y);
     }
 
     /// <summary>
@@ -125,8 +133,7 @@ public class Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
     /// <summary>
     /// <include file="_SharedXML.xml" path='doc/member[@name="Phrases.Implementation.Equatable"]/*'/>
     /// </summary>
-    public bool Equals(Vector2D? other) {
-        if (other is null) return false;
+    public bool Equals(Vector2D other) {
         return velocity == other.Velocity && rotation == other.Rotation;
     }
 
@@ -134,9 +141,7 @@ public class Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
     /// Sorts by Velocity value, then by the Rotation value.
     /// </summary>
     /// <returns><include file="_SharedXML.xml" path='doc/member[@name="Phrases.Compare.Return"]/*'/></returns>
-    public int CompareTo(Vector2D? other) {
-        if (other is null) return 0;
-
+    public int CompareTo(Vector2D other) {
         int value = velocity.CompareTo(other.Velocity);
         if (value == 0) {
             return rotation.CompareTo(other.Rotation);
@@ -145,10 +150,10 @@ public class Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
     }
 
     /// <summary>
-    /// <include file="_SharedXML.xml" path='doc/member[@name="Phrases.Overriden.Equals"]/*'/> <see cref="Equals(Vector2D?)"/>.
+    /// <include file="_SharedXML.xml" path='doc/member[@name="Phrases.Overriden.Equals"]/*'/> <see cref="Equals(Vector2D)"/>.
     /// </summary>
     public override bool Equals(object? obj) {
-        return base.Equals(obj);
+        return obj is Vector2D other && Equals(other);
     }
 
     /// <summary>

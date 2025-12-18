@@ -102,8 +102,7 @@ public class LineClassIntersectionAndPointTests {
         await Assert.That(l1.IsIntersecting(l2)).IsEqualTo(isIntersecting);
         await Assert.That(l1 ^ l2).IsEqualTo(isIntersecting);
 
-        Vector2D vector = new Vector2D();
-        vector.AssignToCoordinates(l2x1, l2y1, l2x2, l2y2);
+        Vector2D vector = Vector2D.FromCoordinates(l2x1, l2y1, l2x2, l2y2);
         await Assert.That(l1.IsIntersecting(new Point2D(l2x1, l2y1), vector)).IsEqualTo(isIntersecting);
     }
 
