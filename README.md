@@ -32,12 +32,12 @@ Read the wiki (which has links to the package) and get a bunch of class definiti
 
 # Changelog
 
-0.8 (12/18/25)
+0.8 (12/19/25)
 
 - BREAKING CHANGE
     - Changed Rotation, Point, Vector, Line, and Equation to Value types (structs) because I was foolish and it's what I should have done in the first place. 
         - I do kinda dislike how the API turned out, but I kept all the methods I wanted to, so...
-- Created Circle2D struct
+- Created Circle2D struct with minimal methods, I'll see how many more I need to add. And I just want to get it into production to start testing it, so I'm going to publish. 
 
 0.7.5 (12/17/25)
 
