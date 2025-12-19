@@ -78,7 +78,6 @@ public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     /// Returns a vector from this point to the parameter. 
     /// </summary>
     /// <param name="point">Point to target</param>
-    /// <returns></returns>
     public Vector2D GetVector(Point2D point) {
         return Vector2D.FromCoordinates(x, y, point.x, point.y);
     }

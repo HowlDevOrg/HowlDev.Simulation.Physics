@@ -214,3 +214,28 @@ public class PointClassOperatorTests {
         await Assert.That(answer.Y).IsEqualTo(yOut);
     }
 }
+public class PointClassGetVectorsTests {
+
+    [Test]
+    [Arguments(0, 0, 10, 0, 0, 10)]
+    [Arguments(0, 0, 10, 10, 45, 14.14)]
+    [Arguments(0, 0, 0, 10, 90, 10)]
+    [Arguments(0, 0, -10, 10, 135, 14.14)]
+    [Arguments(0, 0, -10, 0, 180, 10)]
+    [Arguments(0, 0, -10, -10, 225, 14.14)]
+    [Arguments(0, 0, 0, -10, 270, 10)]
+    [Arguments(0, 0, 10, -10, 315, 14.14)]
+    [Arguments(5, 5, 15, 5, 0, 10)]
+    [Arguments(5, 5, 8, 9, 53.13, 5)]
+    [Arguments(-3, 2, 3, 8, 45, 8.49)]
+    [Arguments(10, -5, 5, -10, 225, 7.07)]
+    public async Task GetVectorFromPoint(
+        double x1, double y1, double x2, double y2, double expectedRotation, double expectedVelocity) {
+        Point2D p1 = new Point2D(x1, y1);
+        Point2D p2 = new Point2D(x2, y2);
+        Vector2D vector = p1.GetVector(p2);
+
+        await Assert.That(Math.Abs(vector.Rotation.RotationAngle - expectedRotation)).IsLessThanOrEqualTo(0.1);
+        await Assert.That(Math.Abs(vector.Velocity - expectedVelocity)).IsLessThanOrEqualTo(0.1);
+    }
+}
