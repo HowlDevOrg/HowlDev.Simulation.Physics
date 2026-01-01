@@ -72,6 +72,40 @@ public class VectorClassOperatorTests {
         await Assert.That(Math.Abs(answer.Y - answerY)).IsLessThanOrEqualTo(0.1);
     }
 
+    [Test] 
+    [Arguments(0, 5.0, 180, 5.0, 0, 0)] 
+    [Arguments(90, 5.0, 270, 5.0, 0, 0)] 
+    [Arguments(0, 5.0, 0, 5.0, 0, 10.0)] 
+    [Arguments(90, 3.0, 90, 3.0, 90, 6.0)] 
+    [Arguments(180, 2.5, 180, 2.5, 180, 5.0)] 
+    [Arguments(270, 4.0, 270, 4.0, 270, 8.0)] 
+    [Arguments(0, 5.0, 90, 5.0, 45, 7.07)] 
+    [Arguments(90, 5.0, 180, 5.0, 135, 7.07)] 
+    [Arguments(180, 5.0, 270, 5.0, 225, 7.07)] 
+    [Arguments(270, 5.0, 0, 5.0, 315, 7.07)] 
+    [Arguments(0, 10.0, 180, 5.0, 0, 5.0)] 
+    [Arguments(90, 10.0, 270, 3.0, 90, 7.0)] 
+    [Arguments(0, 3.0, 45, 3.0, 22.5, 5.54)]
+    [Arguments(45, 4.0, 135, 4.0, 90, 5.66)] 
+    [Arguments(30, 5.0, 60, 5.0, 45, 9.66)] 
+    [Arguments(0, 8.0, 120, 4.0, 30, 6.84)] 
+    public async Task VectorAdditionOperator(
+        double rot1, double vel1, double rot2, double vel2,
+        double expectedRot, double expectedVel) {
+        Vector2D v1 = new Vector2D(rot1, vel1);
+        Vector2D v2 = new Vector2D(rot2, vel2);
+
+        Vector2D result = v1 + v2;
+        
+        // For zero vectors, rotation is undefined
+        if (expectedVel < 0.01) {
+            await Assert.That(result.Velocity).IsLessThanOrEqualTo(0.1);
+        } else {
+            await Assert.That(Math.Abs(result.Rotation.RotationAngle - expectedRot)).IsLessThanOrEqualTo(1.0);
+            await Assert.That(Math.Abs(result.Velocity - expectedVel)).IsLessThanOrEqualTo(0.1);
+        }
+    }
+
     [Test] // Validated with Desmos
     [Arguments(-0.2, -2.7, 162, 1.05, 0.8, -3.0)]
     [Arguments(0.7, 0.7, 343, 2.69, -1.8, 1.48)]

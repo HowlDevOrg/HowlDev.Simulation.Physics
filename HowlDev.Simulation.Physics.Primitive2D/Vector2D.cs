@@ -101,10 +101,25 @@ public readonly struct Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
     }
 
     /// <summary>
+    /// Returns the vector as a point.
+    /// </summary>
+    public Point2D AsPoint() {
+        return rotation * velocity;
+    }
+
+    /// <summary>
     /// Inverts the internal rotation value 180 degrees to go in the opposite direction, keeping the same velocity. 
     /// </summary>
     public static Vector2D operator -(Vector2D vec) {
         return new Vector2D(vec.rotation.DoubleFlip(), vec.velocity);
+    }
+
+    /// <summary>
+    /// Converts the vectors to points, adds them together, then returns the new vector.
+    /// </summary>
+    public static Vector2D operator +(Vector2D v1, Vector2D v2) {
+        Point2D sum = v1.AsPoint() + v2.AsPoint();
+        return FromCoordinates(sum);
     }
 
     /// <summary>

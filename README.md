@@ -32,6 +32,10 @@ Read the wiki (which has links to the package) and get a bunch of class definiti
 
 # Changelog
 
+0.8.3 (1/1/26)
+
+- Vector2D now has an addition operator between two vectors, converting them into points and adding them using that operator, then returning the resulting vector. 
+
 0.8.2 (12/19/25)
 
 - Vector2D has some additional operators that I hope will be useful in making my game easier. 
