@@ -47,9 +47,14 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
     public Rotation2D Angle { get { return point0 ^ point1; } }
 
     /// <summary>
-    /// An array of length 2 holding both points. 
+    /// The starting point.
     /// </summary>
-    public Point2D[] Points { get { return [point0, point1]; } }
+    public Point2D StartPoint => point0;
+
+    /// <summary>
+    /// The ending point.
+    /// </summary>
+    public Point2D EndPoint => point1;
 
     /// <summary>
     /// Default constructor. Creates two points at the origin. 
@@ -194,6 +199,7 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
                 if (p1.Equals(p2)) return true;
             }
         }
+        
         return false;
     }
 
@@ -247,6 +253,7 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
         Point2D? point = e1.IntersectionPoint(e2);
 
         if (!point.HasValue) { return null; }
+
         Point2D p = point.Value;
         if (p.X < l1.MinX || p.X < l2.MinX ||
             p.X > l1.MaxX || p.X > l2.MaxX ||
@@ -254,6 +261,7 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
             p.Y > l1.MaxY || p.Y > l2.MaxY) {
             return null;
         }
+
         return point;
     }
 
@@ -309,6 +317,7 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
         if (value == 0) {
             return point1.CompareTo(other.point1);
         }
+
         return value;
     }
 

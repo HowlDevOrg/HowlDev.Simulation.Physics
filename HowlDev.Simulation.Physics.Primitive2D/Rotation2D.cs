@@ -146,6 +146,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
         } else {
             newAngle = 360 - rotationAngle;
         }
+
         return new Rotation2D(newAngle);
     }
 
@@ -164,6 +165,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
         } else {
             newAngle = 270 - (rotationAngle - 270);
         }
+
         return new Rotation2D(newAngle);
     }
 
@@ -280,6 +282,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     public static double AngleOf(double x, double y) {
         double value = Math.Atan2(y, x) / Math.PI * 180;
         if (value < 0) { value += 360; }
+        
         return Math.Round(value, 2);
     }
 
@@ -511,6 +514,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
         while (incomingValue < 0) {
             incomingValue += 360;
         }
+        
         double normalizedAngle = Math.Round(incomingValue % 360, 2);
 
         // Calculate radian and coordinates

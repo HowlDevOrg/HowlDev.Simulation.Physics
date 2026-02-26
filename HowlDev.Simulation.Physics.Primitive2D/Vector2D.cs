@@ -182,6 +182,7 @@ public readonly struct Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
         if (value == 0) {
             return rotation.CompareTo(other.Rotation);
         }
+        
         return value;
     }
 

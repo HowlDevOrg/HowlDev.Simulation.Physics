@@ -202,6 +202,7 @@ public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
         if (xCoord == 0) {
             return y.CompareTo(other.y);
         }
+        
         return xCoord;
     }
 

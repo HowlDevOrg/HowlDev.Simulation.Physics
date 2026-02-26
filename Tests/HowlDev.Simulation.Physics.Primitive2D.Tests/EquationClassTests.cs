@@ -4,28 +4,29 @@ public class EquationBasicTests {
     [Test]
     public async Task DefaultConstructorTest() {
         Equation2D e = new Equation2D();
-        await Assert.That(e[0]).IsEqualTo(0.0);
+        await Assert.That(e.Intercept).IsEqualTo(0.0);
     }
 
     [Test]
     public async Task PointConstructorTest() {
         Equation2D e = new Equation2D(new Point2D(0, 0), new Point2D(5, 5));
-        await Assert.That(e[1]).IsEqualTo(1.0);
-        await Assert.That(e[0]).IsEqualTo(0.0);
+        await Assert.That(e.Slope).IsEqualTo(1.0);
+        await Assert.That(e.Intercept).IsEqualTo(0.0);
     }
 
     [Test]
     public async Task LineConstructorTest() {
         Line2D line = new Line2D(new Point2D(0, 0), new Point2D(5, 5));
         Equation2D e = new Equation2D(line);
-        await Assert.That(e[1]).IsEqualTo(1.0);
-        await Assert.That(e[0]).IsEqualTo(0.0);
+        await Assert.That(e.Slope).IsEqualTo(1.0);
+        await Assert.That(e.Intercept).IsEqualTo(0.0);
     }
 
     [Test]
     public async Task CoefficientTest() {
         Equation2D e = new Equation2D(1, 4);
-        await Assert.That(e.Coefficients).IsEquivalentTo(new double[] { 4, 1 });
+        await Assert.That(e.Slope).IsEqualTo(1);
+        await Assert.That(e.Intercept).IsEqualTo(4);
     }
 
     [Test]
@@ -34,8 +35,8 @@ public class EquationBasicTests {
         Equation2D e2 = new Equation2D(e1);
 
         e2 = e2.WithCoefficient(0, 25);
-        await Assert.That(e1[0]).IsEqualTo(10);
-        await Assert.That(e2[0]).IsEqualTo(25);
+        await Assert.That(e1.Intercept).IsEqualTo(10);
+        await Assert.That(e2.Intercept).IsEqualTo(25);
     }
 }
 public class EquationCoordinateAssignmentTests {
@@ -49,8 +50,8 @@ public class EquationCoordinateAssignmentTests {
     public async Task SimpleAssignmentTests(
         double x1, double y1, double x2, double y2, double slope, double intercept) {
         Equation2D equation = new Equation2D(x1, y1, x2, y2);
-        await Assert.That(equation[0]).IsEqualTo(intercept);
-        await Assert.That(equation[1]).IsEqualTo(slope);
+        await Assert.That(equation.Intercept).IsEqualTo(intercept);
+        await Assert.That(equation.Slope).IsEqualTo(slope);
     }
 
     [Test]
@@ -77,16 +78,16 @@ public class EquationCoordinateAssignmentTests {
     public async Task ComplexAssignmentTests(
         double x1, double y1, double x2, double y2, double slope, double intercept) {
         Equation2D equation = Equation2D.FromCoordinates(x1, y1, x2, y2);
-        await Assert.That(equation[0] - intercept).IsLessThanOrEqualTo(0.1);
-        await Assert.That(equation[1] - slope).IsLessThanOrEqualTo(0.1);
+        await Assert.That(equation.Intercept - intercept).IsLessThanOrEqualTo(0.1);
+        await Assert.That(equation.Slope - slope).IsLessThanOrEqualTo(0.1);
 
         equation = Equation2D.FromCoordinates(new Point2D(x1, y1), new Point2D(x2, y2));
-        await Assert.That(equation[0] - intercept).IsLessThanOrEqualTo(0.1);
-        await Assert.That(equation[1] - slope).IsLessThanOrEqualTo(0.1);
+        await Assert.That(equation.Intercept - intercept).IsLessThanOrEqualTo(0.1);
+        await Assert.That(equation.Slope - slope).IsLessThanOrEqualTo(0.1);
 
         equation = Equation2D.FromCoordinates(new Line2D(x1, y1, x2, y2));
-        await Assert.That(equation[0] - intercept).IsLessThanOrEqualTo(0.1);
-        await Assert.That(equation[1] - slope).IsLessThanOrEqualTo(0.1);
+        await Assert.That(equation.Intercept - intercept).IsLessThanOrEqualTo(0.1);
+        await Assert.That(equation.Slope - slope).IsLessThanOrEqualTo(0.1);
     }
 }
 public class EquationAssignToPointTests {
@@ -227,8 +228,8 @@ public class EquationOperatorTests {
         double slope, double intercept) {
         Equation2D equation = new Equation2D(slope, intercept);
         equation = -equation;
-        await Assert.That(equation[1]).IsEqualTo(-slope);
-        await Assert.That(equation[0]).IsEqualTo(intercept);
+        await Assert.That(equation.Slope).IsEqualTo(-slope);
+        await Assert.That(equation.Intercept).IsEqualTo(intercept);
     }
 
     [Test]
@@ -243,8 +244,8 @@ public class EquationOperatorTests {
         Equation2D e2 = new Equation2D(slope2, intercept2);
         Equation2D answer = e1 + e2;
 
-        await Assert.That(answer[1] - outSlope).IsLessThanOrEqualTo(0.1);
-        await Assert.That(answer[0] - outIntercept).IsLessThanOrEqualTo(0.1);
+        await Assert.That(answer.Slope - outSlope).IsLessThanOrEqualTo(0.1);
+        await Assert.That(answer.Intercept - outIntercept).IsLessThanOrEqualTo(0.1);
     }
 
     [Test]

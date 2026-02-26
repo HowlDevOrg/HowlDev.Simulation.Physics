@@ -11,11 +11,6 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     private bool x_Intercept => coefficient1 == double.PositiveInfinity;
 
     /// <summary>
-    /// Get internal Coefficient array. [1] refers to the slope, [0] to the y-intercept.
-    /// </summary>
-    public double[] Coefficients => [coefficient0, coefficient1];
-
-    /// <summary>
     /// Gets the current Slope.
     /// </summary>
     public double Slope => coefficient1;
@@ -69,11 +64,6 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
         coefficient0 = equation.coefficient0;
         coefficient1 = equation.coefficient1;
     }
-
-    /// <summary>
-    /// Index into the inner array directly. See <see cref="Coefficients"/> property for the reference.
-    /// </summary>
-    public double this[int i] => i == 0 ? coefficient0 : coefficient1;
 
     /// <summary>
     /// Returns a new Equation2D with an updated coefficient value.
@@ -182,14 +172,14 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// Inverts the slope (shorthand).
     /// </summary>
     public static Equation2D operator -(Equation2D obj) {
-        return new Equation2D(-obj[1], obj[0]);
+        return new Equation2D(-obj.Slope, obj.Intercept);
     }
 
     /// <summary>
     /// Adds the slope and intercept together, and returns a new object.
     /// </summary>
     public static Equation2D operator +(Equation2D left, Equation2D right) {
-        return new Equation2D(left[1] + right[1], left[0] + right[0]);
+        return new Equation2D(left.Slope + right.Slope, left.Intercept + right.Intercept);
     }
 
     /// <summary>
@@ -210,11 +200,12 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// Returns <c>True</c> if the slope is &gt;, or if slopes are equal and the y-intercept is &gt;.
     /// </summary>
     public static bool operator >(Equation2D left, Equation2D right) {
-        if (left[1] > right[1]) {
+        if (left.Slope > right.Slope) {
             return true;
-        } else if (left[1] == right[1] && left[0] > right[0]) {
+        } else if (left.Slope == right.Slope && left.Intercept > right.Intercept) {
             return true;
         }
+
         return false;
     }
 
@@ -222,11 +213,12 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// Returns <c>True</c> if the slope is &lt;, or if slopes are equal and the y-intercept is &lt;.
     /// </summary>
     public static bool operator <(Equation2D left, Equation2D right) {
-        if (left[1] < right[1]) {
+        if (left.Slope < right.Slope) {
             return true;
-        } else if (left[1] == right[1] && left[0] < right[0]) {
+        } else if (left.Slope == right.Slope && left.Intercept < right.Intercept) {
             return true;
         }
+
         return false;
     }
 
@@ -234,11 +226,12 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// Returns <c>True</c> if the slope is &gt;=, or if slopes are equal and the y-intercept is &gt;=.
     /// </summary>
     public static bool operator >=(Equation2D left, Equation2D right) {
-        if (left[1] >= right[1]) {
+        if (left.Slope >= right.Slope) {
             return true;
-        } else if (left[1] == right[1] && left[0] >= right[0]) {
+        } else if (left.Slope == right.Slope && left.Intercept >= right.Intercept) {
             return true;
         }
+
         return false;
     }
 
@@ -246,11 +239,12 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// Returns <c>True</c> if the slope is &lt;=, or if slopes are equal and the y-intercept is &lt;=.
     /// </summary>
     public static bool operator <=(Equation2D left, Equation2D right) {
-        if (left[1] <= right[1]) {
+        if (left.Slope <= right.Slope) {
             return true;
-        } else if (left[1] == right[1] && left[0] <= right[0]) {
+        } else if (left.Slope == right.Slope && left.Intercept <= right.Intercept) {
             return true;
         }
+
         return false;
     }
 
@@ -279,6 +273,7 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
         if (value == 0) {
             return coefficient0.CompareTo(other.coefficient0);
         }
+        
         return value;
     }
 

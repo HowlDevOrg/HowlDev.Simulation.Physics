@@ -11,8 +11,8 @@ public class LineClassBasicTests {
         l3 = l3.WithPoint(0, 0, 2);
         l3 = l3.WithPoint(1, new Point2D(5, 6));
         await Assert.That(l2[0].X).IsEqualTo(1);
-        await Assert.That(l3.Points[0]).IsEqualTo(new Point2D(0, 2));
-        await Assert.That(l3.Points[1]).IsEqualTo(new Point2D(5, 6));
+        await Assert.That(l3.StartPoint).IsEqualTo(new Point2D(0, 2));
+        await Assert.That(l3.EndPoint).IsEqualTo(new Point2D(5, 6));
     }
 
     [Test]
