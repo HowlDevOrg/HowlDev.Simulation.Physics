@@ -54,7 +54,7 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// Takes in a <c>Line</c> and derives its equation.
     /// </summary>
     public Equation2D(Line2D l1) {
-        (coefficient0, coefficient1) = CalculateFromCoordinates(l1[0].X, l1[0].Y, l1[1].X, l1[1].Y);
+        (coefficient0, coefficient1) = CalculateFromCoordinates(l1.StartPoint.X, l1.StartPoint.Y, l1.EndPoint.X, l1.EndPoint.Y);
     }
 
     /// <summary>

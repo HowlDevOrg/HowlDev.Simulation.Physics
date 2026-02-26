@@ -10,7 +10,7 @@ public class LineClassBasicTests {
 
         l3 = l3.WithPoint(0, 0, 2);
         l3 = l3.WithPoint(1, new Point2D(5, 6));
-        await Assert.That(l2[0].X).IsEqualTo(1);
+        await Assert.That(l2.EndPoint.X).IsEqualTo(3);
         await Assert.That(l3.StartPoint).IsEqualTo(new Point2D(0, 2));
         await Assert.That(l3.EndPoint).IsEqualTo(new Point2D(5, 6));
     }
@@ -79,7 +79,7 @@ public class LineClassConnectionTests {
         Line2D l1 = new Line2D(l1x1, l1y1, l1x2, l1y2);
         Line2D l2 = new Line2D(l2x1, l2y1, l2x2, l2y2);
         await Assert.That(l1.ContainsEndpoint(l2)).IsEqualTo(isConnected);
-        await Assert.That(l1.ContainsEndpoint(l2[0]) || l1.ContainsEndpoint(l2[1])).IsEqualTo(isConnected);
+        await Assert.That(l1.ContainsEndpoint(l2.StartPoint) || l1.ContainsEndpoint(l2.EndPoint)).IsEqualTo(isConnected);
     }
 }
 public class LineClassIntersectionAndPointTests {

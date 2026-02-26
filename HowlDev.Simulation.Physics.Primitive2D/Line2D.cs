@@ -102,11 +102,6 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
     }
 
     /// <summary>
-    /// Index into the inner array directly.
-    /// </summary>
-    public Point2D this[int i] => i == 0 ? point0 : point1;
-
-    /// <summary>
     /// Returns a new <c>Line</c> with the <c>Point</c> at the given index updated. 
     /// </summary>
     /// <param name="index">Index of the array (either 0 or 1)</param>
@@ -139,16 +134,16 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
         // Provided by ChatGPT
         double dx1 = point1.X - point0.X;
         double dy1 = point1.Y - point0.Y;
-        double dx2 = l1[1].X - l1[0].X;
-        double dy2 = l1[1].Y - l1[0].Y;
+        double dx2 = l1.EndPoint.X - l1.StartPoint.X;
+        double dy2 = l1.EndPoint.Y - l1.StartPoint.Y;
 
         double denominator = dx1 * dy2 - dy1 * dx2;
         if (denominator == 0) {
             return false;
         }
 
-        double dx3 = l1[0].X - point0.X;
-        double dy3 = l1[0].Y - point0.Y;
+        double dx3 = l1.StartPoint.X - point0.X;
+        double dy3 = l1.StartPoint.Y - point0.Y;
 
         double t = (dx3 * dy2 - dy3 * dx2) / denominator;
         double u = (dx3 * dy1 - dy3 * dx1) / denominator;
@@ -231,8 +226,8 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
         // then min that with the two points. 
         throw new NotImplementedException();
         // Point2D point2D = new Point2D(x, y);
-        // return Math.Min(point2D.GetDistance(this[0]),
-        //                 point2D.GetDistance(this[1]));
+        // return Math.Min(point2D.GetDistance(this.StartPoint),
+        //                 point2D.GetDistance(this.EndPoint));
     }
 
     /// <summary>
@@ -269,28 +264,28 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
     /// Returns a new <c>Line</c> with the points swapped.
     /// </summary>
     public static Line2D operator -(Line2D l1) {
-        return new Line2D(l1[1], l1[0]);
+        return new Line2D(l1.EndPoint, l1.StartPoint);
     }
 
     /// <summary>
     /// Adds the lower <c>Point</c>s 1-to-1 to return a new <c>Line</c>.
     /// </summary>
     public static Line2D operator +(Line2D l1, Line2D l2) {
-        return new Line2D(new Point2D(l1[0] + l2[0]), new Point2D(l1[1] + l2[1]));
+        return new Line2D(new Point2D(l1.StartPoint + l2.StartPoint), new Point2D(l1.EndPoint + l2.EndPoint));
     }
 
     /// <summary>
     /// Returns <c>True</c> if all of the points are equal (and in the same position in the array). 
     /// </summary>
     public static bool operator ==(Line2D l1, Line2D l2) {
-        return l1[0] == l2[0] && l1[1] == l2[1];
+        return l1.StartPoint == l2.StartPoint && l1.EndPoint == l2.EndPoint;
     }
 
     /// <summary>
     /// Returns <c>True</c> if any of the points are not equal.
     /// </summary>
     public static bool operator !=(Line2D l1, Line2D l2) {
-        return l1[0] != l2[0] || l1[1] != l2[1];
+        return l1.StartPoint != l2.StartPoint || l1.EndPoint != l2.EndPoint;
     }
 
     // Custom operators

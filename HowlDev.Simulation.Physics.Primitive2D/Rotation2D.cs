@@ -128,7 +128,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     /// </summary>
     /// <returns>A new Rotation2D with the angle of the line</returns>
     public static Rotation2D FromCoordinates(Line2D l1) {
-        return FromCoordinates(l1[0].X, l1[0].Y, l1[1].X, l1[1].Y);
+        return FromCoordinates(l1.StartPoint.X, l1.StartPoint.Y, l1.EndPoint.X, l1.EndPoint.Y);
     }
 
     /// <summary>
