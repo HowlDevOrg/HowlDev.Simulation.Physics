@@ -434,8 +434,10 @@ public class RotationClassAddOperatorTests {
         double rot1, double rot2, double outAngle) {
         Rotation2D r1 = new Rotation2D(rot1);
         Rotation2D r2 = new Rotation2D(rot2);
+        Rotation2D result = r1 + rot2;
         r1 += r2;
         await Assert.That(r1.RotationAngle).IsEqualTo(outAngle);
+        await Assert.That(result.RotationAngle).IsEqualTo(outAngle);
     }
 }
 public class RotationClassSubtractOperatorTests {
@@ -450,8 +452,10 @@ public class RotationClassSubtractOperatorTests {
         double rot1, double rot2, double outAngle) {
         Rotation2D r1 = new Rotation2D(rot1);
         Rotation2D r2 = new Rotation2D(rot2);
+        Rotation2D result = r1 - rot2;
         r1 -= r2;
         await Assert.That(r1.RotationAngle).IsEqualTo(outAngle);
+        await Assert.That(result.RotationAngle).IsEqualTo(outAngle);
     }
 }
 public class RotationClassAverageOperatorTests {

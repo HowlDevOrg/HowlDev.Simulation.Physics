@@ -377,11 +377,27 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
+    /// Adds one rotation angle to the other, and returns a normalized angle.
+    /// </summary>
+    /// <returns>Adjusted left object</returns>
+    public static Rotation2D operator +(Rotation2D left, double amount) {
+        return new Rotation2D(left.RotationAngle + amount);
+    }
+
+    /// <summary>
     /// Subtracts one rotation angle from the other, and returns a normalized angle.
     /// </summary>
     /// <returns>Adjusted left object.</returns>
     public static Rotation2D operator -(Rotation2D left, Rotation2D right) {
         return new Rotation2D(left.RotationAngle - right.RotationAngle);
+    }
+
+    /// <summary>
+    /// Subtracts one rotation angle from the other, and returns a normalized angle.
+    /// </summary>
+    /// <returns>Adjusted left object.</returns>
+    public static Rotation2D operator -(Rotation2D left, double amount) {
+        return new Rotation2D(left.RotationAngle - amount);
     }
 
     /// <summary>
