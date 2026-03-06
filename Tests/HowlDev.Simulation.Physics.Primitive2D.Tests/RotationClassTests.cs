@@ -1,4 +1,4 @@
-namespace HowlDev.Simulation.Physics.Primitive2D.Tests;
+namespace HowlDev.Simulation.Physics.Primitive2D.RotationTests;
 
 // Ints in Arguments are a legacy of the way they used to be handled. It's more tests to check at least. 
 public class RotationClassConstraintTests {
@@ -37,17 +37,6 @@ public class RotationClassConstraintTests {
     public async Task RotationEnforcesUpperConstraint() {
         Rotation2D r = new Rotation2D(365.23);
         await Assert.That(r.RotationAngle).IsEqualTo(5.23);
-    }
-
-    [Test]
-    [Arguments(150, 50, 200)]
-    [Arguments(150, -50.5, 99.5)]
-    [Arguments(150, -200, 310)]
-    public async Task RotationCanBeAdjusted(
-        double startingDegree, double adjustment, double outDegree) {
-        Rotation2D r = new Rotation2D(startingDegree);
-        r = r.AdjustBy(adjustment);
-        await Assert.That(r.RotationAngle).IsEqualTo(outDegree);
     }
 
     [Test]

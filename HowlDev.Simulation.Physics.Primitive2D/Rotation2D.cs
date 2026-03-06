@@ -3,8 +3,7 @@
 /// <summary>
 /// Class <c>Rotation</c> stores a single RotationAngle as a double (rounded to 2 decimal places) 
 /// and provides a number of helpful methods and properties to work with 2D angles. It 
-/// recalculates unit coordinates every time the value is updated for faster and less costly 
-/// retreival. It implements the IEquatable and IComparable interfaces.
+/// calculates the unit circle point on creation for quick retrieval. 
 /// </summary>
 public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation2D> {
     private readonly double rotationAngle;
@@ -61,16 +60,6 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
     #endregion
     #region Methods
-    /// <summary>
-    /// Given an input angle, it adds or removes by that value and ensures 
-    /// the bounds of 0 - 359.
-    /// </summary>
-    /// <param name="angleDifference">Positive or negative int to adjust the current angle by</param>
-    /// <returns>A new Rotation2D with the adjusted angle</returns>
-    public Rotation2D AdjustBy(double angleDifference) {
-        return new Rotation2D(rotationAngle + angleDifference);
-    }
-
     /// <summary>
     /// Takes in a pair of coordinates from origin (so convert them to that beforehand or use the other method) 
     /// and returns a rotation with that angle value. 
@@ -227,7 +216,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
         if (diff > 180 || diff < 0) { distance *= -1; }
 
         distance *= percent;
-        return AdjustBy(distance);
+        return new(rotationAngle + distance);
     }
 
     /// <summary>
