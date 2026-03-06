@@ -1,4 +1,4 @@
-﻿namespace HowlDev.Simulation.Physics.Primitive2D.Tests;
+﻿namespace HowlDev.Simulation.Physics.Primitive2D.VectorTests;
 
 
 public class VectorClassBasicTests {
@@ -21,18 +21,6 @@ public class VectorClassBasicTests {
         Vector2D m1 = new Vector2D(new Rotation2D(25), 2.3);
         await Assert.That(m1.Rotation.RotationAngle).IsEqualTo(25);
         await Assert.That(m1.Velocity).IsEqualTo(2.3);
-    }
-
-    [Test]
-    public async Task UpdateTests() {
-        Vector2D m1 = new Vector2D();
-        m1 = m1.WithRotation(15);
-        m1 = m1.WithVelocity(2.2);
-        await Assert.That(m1.Rotation.RotationAngle).IsEqualTo(15);
-        await Assert.That(m1.Velocity).IsEqualTo(2.2);
-
-        m1 = m1.WithRotation(new Rotation2D(25));
-        await Assert.That(m1.Rotation.RotationAngle).IsEqualTo(25);
     }
 }
 public class VectorClassOperatorTests {
@@ -259,5 +247,18 @@ public class VectorClassCoordinateAssignmentTests {
         vector = Vector2D.FromCoordinates(new Point2D(x1, y1), new Point2D(x2, y2));
         await Assert.That(vector.Rotation.RotationAngle).IsEqualTo(outRotation);
         await Assert.That(vector.Velocity - outVelocity).IsLessThanOrEqualTo(0.01);
+    }
+}
+public class VectorClassOverriddenMethods {
+    [Test]
+    public async Task OverriddenMethods() {
+        Vector2D vec1 = new(15, 5);
+        Vector2D vec2 = new(vec1);
+        await Assert.That(vec1.ToString()).IsEqualTo("Rotation: Angle: 15, Velocity: 5");
+        await Assert.That(vec1.GetHashCode()).IsEqualTo(HashCode.Combine(15.0.GetHashCode(), 5.0.GetHashCode()));
+        await Assert.That(vec1.Equals(vec2)).IsTrue();
+        object lorem = 15;
+        await Assert.That(vec1.Equals(lorem)).IsFalse();
+
     }
 }

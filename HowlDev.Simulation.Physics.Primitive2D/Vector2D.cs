@@ -43,27 +43,11 @@ public readonly struct Vector2D : IComparable<Vector2D>, IEquatable<Vector2D> {
     }
 
     /// <summary>
-    /// Returns a new Vector2D with the updated rotation at the angle specified.
+    /// Duplicates the <c>Rotation</c> object and assigns velocity directly.
     /// </summary>
-    /// <returns>A new Vector2D with the updated rotation</returns>
-    public Vector2D WithRotation(double rotationInt) {
-        return new Vector2D(rotationInt, velocity);
-    }
-
-    /// <summary>
-    /// Returns a new Vector2D with the updated rotation by duplicating the object. 
-    /// </summary>
-    /// <returns>A new Vector2D with the updated rotation</returns>
-    public Vector2D WithRotation(Rotation2D rotationObject) {
-        return WithRotation(rotationObject.RotationAngle);
-    }
-
-    /// <summary>
-    /// Returns a new Vector2D with the updated velocity value.
-    /// </summary>
-    /// <returns>A new Vector2D with the updated velocity</returns>
-    public Vector2D WithVelocity(double velocityDouble) {
-        return new Vector2D(rotation, velocityDouble);
+    public Vector2D(Vector2D vec) {
+        rotation = new Rotation2D(vec.rotation);
+        velocity = vec.velocity;
     }
 
     /// <summary>
