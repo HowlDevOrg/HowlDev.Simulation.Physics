@@ -1,17 +1,18 @@
-# 2D Physics Library
+# Changelog
 
-This is a junior-in-school's first public library. As of now, it contains a variety of base objects for base 2D physics; 
-there's a Rotation to handle orientation, a Point to handle positions, Lines that are pairs of points, and Vectors that 
-hold a rotation and magnitude. None of these classes are done, but all of the base classes are in place. In the works 
-are a few objects that are collections of points or vectors, and they will handle collisions and such. I just haven't 
-figured out how to best make it yet. 
+0.9.0 (3/5/2026)
 
-I add XML Comments (the ones VS Code and Visual Studio usually read for their Intellisense) to every property, method, and class, 
-so I hope those are of a bit more use to you than a generalized readme. There is an external documentation page that you can 
-[look at right now](https://wiki.codyhowell.dev/2dphysicslibrary) to read through all of the classes that are ready to be used. 
-They should be pretty stable, just making more methods and tests for them.  
+The date was absolutely not intentional. That's pretty funny. 
 
-## Changelog
+I've updated 4 of the base types (Rotation, Point, Vector, and Equation) by simplifying their interfaces and updating their tests (they now mostly have 100% coverage). I added a few things that I hope will be useful such as the Equation now being able to get the value it calculates at a given X value (which was overdue), Point can now be converted to a vector or a Vector2, which is used in some drawing systems (and just generally useful), and most of them got updated math operators and implicit/explicit operators.
+
+I also looked around and saw a few methods that I think were pointless and/or were not clear with what they did, so I tried to remove as many of those as I could. I will continue to refine the API to be more useful with in-line methods (simplifying the code you need to write) and be extremely clear. Some methods you used may have been removed; that's why I bumped the minor version!
+
+0.8.~ (??)
+
+This updated everything into Structs, which I think will drastically improve usability and performance. 
+
+I think through this point I also made the Circle class, which helps a little bit, but it needs a lot more work. It's also not very tested well. 
 
 0.7.4 (3/5/2025)
 	
