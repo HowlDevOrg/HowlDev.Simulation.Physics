@@ -288,13 +288,6 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     /// </summary>
     public bool IsCloseTo(Rotation2D other, double tolerance)
         => DistanceTo(other) <= tolerance;
-
-    /// <summary>
-    /// In-place mutation. For performance benefits only if needed. 
-    /// </summary>
-    public static void RotateBy(ref Rotation2D rotation, double delta) {
-        rotation = new Rotation2D(rotation.RotationAngle + delta);
-    }
     #endregion
     #region Operators
     /// <summary>
@@ -316,45 +309,6 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     /// </summary>
     public static Rotation2D operator -(Rotation2D obj) {
         return obj.FlipX();
-    }
-
-    /// <summary>
-    /// Returns the not! of the object. See <see cref="operator true(Rotation2D)"/> and <see cref="operator false(Rotation2D)"/>.
-    /// </summary>
-    public static bool operator !(Rotation2D obj) {
-        if (obj) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /// <summary>
-    /// Returns <c>true</c> if the rotation angle is not 0. It acts like JavaScript's "truthy".
-    /// </summary>
-    public static bool operator true(Rotation2D obj) {
-        return obj.RotationAngle != 0;
-    }
-
-    /// <summary>
-    /// Returns <c>false</c> if the rotation angle is 0. See also <seealso cref="operator true(Rotation2D)"/>.
-    /// </summary>
-    public static bool operator false(Rotation2D obj) {
-        return obj.RotationAngle == 0;
-    }
-
-    /// <summary>
-    /// Increments the rotation angle by 1.
-    /// </summary>
-    public static Rotation2D operator ++(Rotation2D obj) {
-        return new Rotation2D(obj.RotationAngle + 1);
-    }
-
-    /// <summary>
-    /// Decrements the rotation angle by 1.
-    /// </summary>
-    public static Rotation2D operator --(Rotation2D obj) {
-        return new Rotation2D(obj.RotationAngle - 1);
     }
 
     /// <summary>

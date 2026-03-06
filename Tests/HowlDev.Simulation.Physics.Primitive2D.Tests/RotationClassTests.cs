@@ -536,12 +536,6 @@ public class RotationClassSmallTests {
         Rotation2D flippedRot1 = rot1.FlipX();
         await Assert.That(a1 == flippedRot1).IsTrue();
 
-        a1++;
-        await Assert.That(a1.RotationAngle).IsEqualTo(316);
-
-        a1--;
-        await Assert.That(a1.RotationAngle).IsEqualTo(315);
-
         await Assert.That(a1 != rot1).IsEqualTo(true);
         await Assert.That(rot2 < a1).IsEqualTo(true);
         await Assert.That(rot2 > a1).IsEqualTo(false);
@@ -552,14 +546,6 @@ public class RotationClassSmallTests {
         Point2D p = a1 * 2;
         await Assert.That(p.X).IsEqualTo(1.42);
         await Assert.That(p.Y).IsEqualTo(-1.42);
-
-        if (a1) { // continue
-        } else { throw new Exception("a1 is not true"); }
-
-        a1 = new Rotation2D(0);
-
-        if (!a1) { // continue
-        } else { throw new Exception("a1 is not false"); }
     }
 
     [Test]
