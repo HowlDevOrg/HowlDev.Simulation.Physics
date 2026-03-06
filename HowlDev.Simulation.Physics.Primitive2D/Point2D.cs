@@ -63,14 +63,6 @@ public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     }
 
     /// <summary>
-    /// Returns a vector from this point to the parameter. 
-    /// </summary>
-    /// <param name="point">Point to target</param>
-    public Vector2D GetVector(Point2D point) {
-        return Vector2D.FromCoordinates(x, y, point.x, point.y);
-    }
-
-    /// <summary>
     /// Gets the distance to another point on the plane. 
     /// </summary>
     public double GetDistance(double x, double y) {
@@ -85,33 +77,17 @@ public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     }
 
     /// <summary>
-    /// Returns a new point from a coordinate pair, the rotation scaled from that point. 
+    /// Returns a vector from this point to the parameter. 
     /// </summary>
-    /// <param name="x">Coordinate X</param>
-    /// <param name="y">Coordinate Y</param>
-    /// <param name="r"><c>Rotation</c> value</param>
-    /// <param name="scalar">Scalar amount</param>
-    /// <returns>A new Point2D with the calculated position</returns>
-    public Point2D WithRotation(double x, double y, Rotation2D r, double scalar) {
-        Point2D newPoint = r * scalar;
-        return new Point2D(this.x + newPoint.x + x, this.y + newPoint.y + y);
-    }
-
-    /// <summary>
-    /// Returns a new point with a rotation value and a scalar amount
-    /// </summary>
-    /// <param name="p">Point to assign from</param>
-    /// <param name="r">Rotation to rotate by</param>
-    /// <param name="scalar">Scalar to scale from</param>
-    /// <returns>A new Point2D with the calculated position</returns>
-    public Point2D WithRotation(Point2D p, Rotation2D r, double scalar) {
-        return WithRotation(p.X, p.Y, r, scalar);
+    /// <param name="point">Point to target</param>
+    public Vector2D ToVector2D(Point2D point) {
+        return Vector2D.FromCoordinates(x, y, point.x, point.y);
     }
 
     /// <summary>
     /// Returns the points as a Vector2.
     /// </summary>
-    public Vector2 ToVector() {
+    public Vector2 ToVector2() {
         return new Vector2((float)x, (float)y);
     }
 

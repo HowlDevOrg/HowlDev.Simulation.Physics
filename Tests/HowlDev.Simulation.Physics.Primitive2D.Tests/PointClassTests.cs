@@ -104,20 +104,9 @@ public class PointClassAssignPointTests {
     [MethodDataSource(nameof(GetValues))]
     public async Task AssignPointTests(
         double x1, double x2, int angle, double scalar, double pointX, double pointY) {
-        Point2D p = new Point2D();
-        p = p.WithRotation(x1, x2, new Rotation2D(angle), scalar);
+        Point2D p = new Point2D(x1, x2);
+        p += new Vector2D(new Rotation2D(angle), scalar);
 
-        await Assert.That(Math.Abs(p.X - pointX)).IsLessThanOrEqualTo(0.01);
-        await Assert.That(Math.Abs(p.Y - pointY)).IsLessThanOrEqualTo(0.01);
-    }
-
-    [Test]
-    [MethodDataSource(nameof(GetValues))]
-    public async Task AssignPointAsPointTests(
-    double x1, double x2, int angle, double scalar, double pointX, double pointY) {
-        Point2D p = new Point2D();
-        Point2D innerPoint = new Point2D(x1, x2);
-        p = p.WithRotation(innerPoint, new Rotation2D(angle), scalar);
         await Assert.That(Math.Abs(p.X - pointX)).IsLessThanOrEqualTo(0.01);
         await Assert.That(Math.Abs(p.Y - pointY)).IsLessThanOrEqualTo(0.01);
     }
@@ -234,7 +223,7 @@ public class PointClassGetVectorsTests {
         double x1, double y1, double x2, double y2, double expectedRotation, double expectedVelocity) {
         Point2D p1 = new Point2D(x1, y1);
         Point2D p2 = new Point2D(x2, y2);
-        Vector2D vector = p1.GetVector(p2);
+        Vector2D vector = p1.ToVector2D(p2);
 
         await Assert.That(Math.Abs(vector.Rotation.RotationAngle - expectedRotation)).IsLessThanOrEqualTo(0.1);
         await Assert.That(Math.Abs(vector.Velocity - expectedVelocity)).IsLessThanOrEqualTo(0.1);
@@ -244,6 +233,6 @@ public class PointClassGetAsVectorTests {
     [Test]
     public async Task GetAsVector2() {
         Point2D point = new(2.3, 4.5);
-        await Assert.That(point.ToVector()).IsEqualTo(new Vector2(2.3f, 4.5f));
+        await Assert.That(point.ToVector2()).IsEqualTo(new Vector2(2.3f, 4.5f));
     }
 }
