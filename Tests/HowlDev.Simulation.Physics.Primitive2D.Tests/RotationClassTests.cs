@@ -42,7 +42,9 @@ public class RotationClassConstraintTests {
     [Test]
     public async Task RotationCanBeCopiedWithoutReference() {
         Rotation2D r1 = new Rotation2D(15);
+        #pragma warning disable IDE0059 // Test intentionally checks for non-reference types
         Rotation2D r2 = new Rotation2D(r1);
+        #pragma warning restore
 
         r2 = new Rotation2D(25);
         await Assert.That(r1.RotationAngle).IsEqualTo(15);
@@ -212,7 +214,7 @@ public class RotationClassAssignsToCoordinatesTests {
         await Assert.That(r.RotationAngle).IsEqualTo(outAngle);
     }
 }
-public class RotationClassAssignsto2PointCoordinateTests {
+public class RotationClassAssignsTo2PointCoordinateTests {
     [Test]
     [Arguments(0, 0, 10, 10, 45)]
     [Arguments(0, 0, -10, 10, 135)]
@@ -562,5 +564,20 @@ public class RotationClassSmallTests {
     public async Task StaticAngleToTests(
         double x, double y, double expAngle) {
         await Assert.That(Rotation2D.AngleOf(x, y)).IsEqualTo(expAngle);
+        await Assert.That(Rotation2D.AngleOf(new Point2D(x, y))).IsEqualTo(expAngle);
+    }
+
+    [Test]
+    public async Task DefaultOverrides() {
+        Rotation2D r = new(50);
+        await Assert.That(r.ToString()).IsEqualTo("Angle: 50");
+
+        double angle = 50;
+        await Assert.That(r.GetHashCode()).IsEqualTo(angle.GetHashCode());
+        await Assert.That(r.Equals(angle)).IsTrue(); // This is an interesting byproduct
+        int fail = 40;
+        await Assert.That(r.Equals(fail)).IsFalse();
+        object f = 23;
+        await Assert.That(r.Equals(f)).IsFalse();
     }
 }
