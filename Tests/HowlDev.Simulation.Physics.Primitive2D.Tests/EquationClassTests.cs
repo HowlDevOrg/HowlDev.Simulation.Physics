@@ -346,7 +346,7 @@ public class EquationInterfaceImplementationTests {
 public class VerticalEquationTests {
     [Test]
     public async Task CanInitialize() {
-        Equation2D equation = new Equation2D(5, 5, 5, 0);
+        _ = new Equation2D(5, 5, 5, 0);
     }
 
     [Test]

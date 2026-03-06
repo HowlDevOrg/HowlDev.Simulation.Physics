@@ -133,6 +133,7 @@ public readonly struct Circle2D : IEquatable<Circle2D>, IComparable<Circle2D> {
         if (point == 0) {
             return radius.CompareTo(other.radius);
         }
+
         return point;
     }
 

@@ -42,9 +42,9 @@ public class RotationClassConstraintTests {
     [Test]
     public async Task RotationCanBeCopiedWithoutReference() {
         Rotation2D r1 = new Rotation2D(15);
-        #pragma warning disable IDE0059 // Test intentionally checks for non-reference types
+#pragma warning disable IDE0059 // Test intentionally checks for non-reference types
         Rotation2D r2 = new Rotation2D(r1);
-        #pragma warning restore
+#pragma warning restore
 
         r2 = new Rotation2D(25);
         await Assert.That(r1.RotationAngle).IsEqualTo(15);

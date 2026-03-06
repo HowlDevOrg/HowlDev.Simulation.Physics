@@ -4,7 +4,7 @@ namespace HowlDev.Simulation.Physics.Primitive2D.Tests;
 public class LineClassBasicTests {
     [Test]
     public async Task LineClassConstructorsTest() {
-        Line2D l1 = new Line2D();
+        _ = new Line2D();
         Line2D l2 = new Line2D([1, 2, 3, 4]);
         Line2D l3 = new Line2D(l2);
 

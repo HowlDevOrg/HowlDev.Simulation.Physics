@@ -1,4 +1,5 @@
 namespace HowlDev.Simulation.Physics.Primitive2D.Tests;
+
 public class CircleClassBaseTests {
     [Test]
     public async Task CircleCanBeCreatedAndRead() {

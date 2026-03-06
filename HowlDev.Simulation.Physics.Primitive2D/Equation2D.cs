@@ -273,7 +273,7 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
         if (value == 0) {
             return coefficient0.CompareTo(other.coefficient0);
         }
-        
+
         return value;
     }
 

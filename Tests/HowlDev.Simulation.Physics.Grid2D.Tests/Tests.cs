@@ -1,4 +1,5 @@
-﻿namespace HowlDev.Simulation.Physics.Grid2D.Tests; 
+﻿namespace HowlDev.Simulation.Physics.Grid2D.Tests;
+
 public class Tests {
     [Test]
     public void Basic() {

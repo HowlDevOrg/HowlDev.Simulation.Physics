@@ -194,7 +194,7 @@ public readonly struct Line2D : IComparable<Line2D>, IEquatable<Line2D>, IEnumer
                 if (p1.Equals(p2)) return true;
             }
         }
-        
+
         return false;
     }
 

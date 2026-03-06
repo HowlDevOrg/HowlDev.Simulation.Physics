@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 
 namespace HowlDev.Simulation.Physics.Primitive2D.PointTests;
+
 public class PointClassBaseTests {
     [Test]
     public async Task TestPointClassPair() {
