@@ -236,3 +236,17 @@ public class PointClassGetAsVectorTests {
         await Assert.That(point.ToVector2()).IsEqualTo(new Vector2(2.3f, 4.5f));
     }
 }
+public class PointClassOverriddenTests {
+    [Test]
+    public async Task OverriddenTests() {
+        Point2D p1 = new();
+        await Assert.That(p1.ToString()).IsEqualTo("X: 0, Y: 0");
+        await Assert.That(p1.GetHashCode()).IsEqualTo(HashCode.Combine(0.0.GetHashCode(), 0.0.GetHashCode()));
+        Point2D p2 = p1;
+        (double x, double y) tuple = p2;
+        await Assert.That(p1.Equals(p2)).IsTrue();
+        await Assert.That(p2.Equals(tuple)).IsTrue();
+        object lorem = 15;
+        await Assert.That(p1.Equals(lorem)).IsFalse();
+    }
+}
