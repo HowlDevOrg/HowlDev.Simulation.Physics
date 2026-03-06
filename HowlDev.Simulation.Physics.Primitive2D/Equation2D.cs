@@ -66,22 +66,6 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     }
 
     /// <summary>
-    /// Returns a new Equation2D with an updated coefficient value.
-    /// </summary>
-    /// <param name="index">0 for the intercept, 1 for the slope.</param>
-    /// <param name="value">Value to be input.</param>
-    /// <returns>A new Equation2D with the updated coefficient</returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public Equation2D WithCoefficient(int index, double value) {
-        if (index > 1 || index < 0) throw new ArgumentOutOfRangeException("Index must be either 0 or 1.");
-        if (index == 0) {
-            return new Equation2D(coefficient1, value);
-        } else {
-            return new Equation2D(value, coefficient0);
-        }
-    }
-
-    /// <summary>
     /// Creates an Equation2D from two coordinate pairs.
     /// </summary>
     /// <returns>A new Equation2D derived from the coordinates</returns>
@@ -106,23 +90,6 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     }
 
     /// <summary>
-    /// Returns a new Equation2D with the same slope but adjusted intercept to pass through the given point.
-    /// </summary>
-    /// <returns>A new Equation2D with adjusted intercept</returns>
-    public Equation2D WithPoint(double x, double y) {
-        double newIntercept = y - coefficient1 * x;
-        return new Equation2D(coefficient1, newIntercept);
-    }
-
-    /// <summary>
-    /// Returns a new Equation2D maintaining the current slope but adjusted to pass through this point.
-    /// </summary>
-    /// <returns>A new Equation2D with adjusted intercept</returns>
-    public Equation2D WithPoint(Point2D point) {
-        return WithPoint(point.X, point.Y);
-    }
-
-    /// <summary>
     /// Returns <c>True</c> if the given point is within the Precision value of the line. 
     /// </summary>
     /// <param name="x">X-coordinate of the incoming point</param>
@@ -140,6 +107,13 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     }
 
     /// <summary>
+    /// Returns the value at a given X coordinate.
+    /// </summary>
+    public double ValueAt(double x) {
+        return Slope * x + Intercept;
+    }
+
+    /// <summary>
     /// Returns <c>True</c> if the given point is within the Precision value of the line. 
     /// </summary>
     /// <param name="p"><c>Point</c> to check if on the line</param>
@@ -153,7 +127,7 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// If there's no intersection point, returns null. 
     /// </summary>
     public Point2D? IntersectionPoint(Equation2D e1) {
-        if (coefficient1 == e1.coefficient1) return null; // Covers both cases.
+        if (Slope == e1.Slope) return null; // Covers both cases.
         if (x_Intercept && e1.x_Intercept) return null; // Covers vertical line cases
 
         if (x_Intercept) {
@@ -169,20 +143,6 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     }
 
     /// <summary>
-    /// Inverts the slope (shorthand).
-    /// </summary>
-    public static Equation2D operator -(Equation2D obj) {
-        return new Equation2D(-obj.Slope, obj.Intercept);
-    }
-
-    /// <summary>
-    /// Adds the slope and intercept together, and returns a new object.
-    /// </summary>
-    public static Equation2D operator +(Equation2D left, Equation2D right) {
-        return new Equation2D(left.Slope + right.Slope, left.Intercept + right.Intercept);
-    }
-
-    /// <summary>
     /// Returns <c>True</c> is all the values are equal.
     /// </summary>
     public static bool operator ==(Equation2D left, Equation2D right) {
@@ -194,58 +154,6 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// </summary>
     public static bool operator !=(Equation2D left, Equation2D right) {
         return !left.Equals(right);
-    }
-
-    /// <summary>
-    /// Returns <c>True</c> if the slope is &gt;, or if slopes are equal and the y-intercept is &gt;.
-    /// </summary>
-    public static bool operator >(Equation2D left, Equation2D right) {
-        if (left.Slope > right.Slope) {
-            return true;
-        } else if (left.Slope == right.Slope && left.Intercept > right.Intercept) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Returns <c>True</c> if the slope is &lt;, or if slopes are equal and the y-intercept is &lt;.
-    /// </summary>
-    public static bool operator <(Equation2D left, Equation2D right) {
-        if (left.Slope < right.Slope) {
-            return true;
-        } else if (left.Slope == right.Slope && left.Intercept < right.Intercept) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Returns <c>True</c> if the slope is &gt;=, or if slopes are equal and the y-intercept is &gt;=.
-    /// </summary>
-    public static bool operator >=(Equation2D left, Equation2D right) {
-        if (left.Slope >= right.Slope) {
-            return true;
-        } else if (left.Slope == right.Slope && left.Intercept >= right.Intercept) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Returns <c>True</c> if the slope is &lt;=, or if slopes are equal and the y-intercept is &lt;=.
-    /// </summary>
-    public static bool operator <=(Equation2D left, Equation2D right) {
-        if (left.Slope <= right.Slope) {
-            return true;
-        } else if (left.Slope == right.Slope && left.Intercept <= right.Intercept) {
-            return true;
-        }
-
-        return false;
     }
 
     // Custom Operator
@@ -288,14 +196,14 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// Returns the summed and weighted hash of the two coefficients.
     /// </summary>
     public override int GetHashCode() {
-        return HashCode.Combine(coefficient0.GetHashCode(), coefficient1.GetHashCode());
+        return HashCode.Combine(Slope.GetHashCode(), Intercept.GetHashCode());
     }
 
     /// <summary>
     /// <include file="_SharedXML.xml" path='doc/member[@name="Phrases.Overriden.ToString"]/*'/> "y = {coefficient1}x + {coefficient0}". 
     /// </summary>
     public override string ToString() {
-        return $"y = {coefficient1}x + {coefficient0}";
+        return $"y = {Slope}x + {Intercept}";
     }
 
     /// <summary>

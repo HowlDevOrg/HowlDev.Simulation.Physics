@@ -1,4 +1,4 @@
-namespace HowlDev.Simulation.Physics.Primitive2D.Tests;
+namespace HowlDev.Simulation.Physics.Primitive2D.EquationTests;
 
 public class EquationBasicTests {
     [Test]
@@ -27,16 +27,6 @@ public class EquationBasicTests {
         Equation2D e = new Equation2D(1, 4);
         await Assert.That(e.Slope).IsEqualTo(1);
         await Assert.That(e.Intercept).IsEqualTo(4);
-    }
-
-    [Test]
-    public async Task EquationCanBeCopied() {
-        Equation2D e1 = new Equation2D(15, 10);
-        Equation2D e2 = new Equation2D(e1);
-
-        e2 = e2.WithCoefficient(0, 25);
-        await Assert.That(e1.Intercept).IsEqualTo(10);
-        await Assert.That(e2.Intercept).IsEqualTo(25);
     }
 }
 public class EquationCoordinateAssignmentTests {
@@ -88,49 +78,6 @@ public class EquationCoordinateAssignmentTests {
         equation = Equation2D.FromCoordinates(new Line2D(x1, y1, x2, y2));
         await Assert.That(equation.Intercept - intercept).IsLessThanOrEqualTo(0.1);
         await Assert.That(equation.Slope - slope).IsLessThanOrEqualTo(0.1);
-    }
-}
-public class EquationAssignToPointTests {
-    [Test]
-    [Arguments(5, 5, 0)]
-    [Arguments(1.18, 7.53, 6.35)]
-    [Arguments(7.75, 5.84, -1.91)]
-    [Arguments(1.35, 8.16, 6.80)]
-    [Arguments(2.99, 1.41, -1.58)]
-    [Arguments(-8.12, -1.43, 6.68)]
-    [Arguments(2.39, 7.69, 5.30)]
-    [Arguments(8.48, 8.43, -0.05)]
-    [Arguments(-2.36, 5.50, 7.86)]
-    [Arguments(-3.30, -8.09, -4.78)]
-    [Arguments(-6.85, -0.08, 6.76)]
-
-    public async Task SlopeIsOne(
-        double x, double y, double expIntercept) {
-        Equation2D e = new Equation2D(1, 0);
-        e = e.WithPoint(x, y);
-        await Assert.That(e.Intercept - expIntercept).IsLessThanOrEqualTo(0.02);
-        await Assert.That(e.Slope).IsEqualTo(1);
-        await Assert.That(e.PointIsOnLine(x, y)).IsTrue();
-    }
-
-    [Test]
-    [Arguments(-9.60, 2.35, -1.9, -15.87)]
-    [Arguments(-4.51, -0.82, -2.6, -12.54)]
-    [Arguments(-6.91, -4.27, 4.9, 29.58)]
-    [Arguments(5.42, -2.41, -4.7, 23.06)]
-    [Arguments(-8.45, 6.35, 0.0, 6.35)]
-    [Arguments(2.22, 0.16, -1.4, 3.26)]
-    [Arguments(-9.50, 5.00, -2.9, -22.55)]
-    [Arguments(9.48, 0.55, 0.5, -4.19)]
-    [Arguments(-4.89, 10.57, 1.0, 15.46)]
-    [Arguments(-9.04, -1.33, -4.2, -39.30)]
-    public async Task VariableSlope(
-        double x, double y, double slope, double expIntercept) {
-        Equation2D e = new Equation2D(slope, 0);
-        e = e.WithPoint(new Point2D(x, y));
-        await Assert.That(e.Intercept - expIntercept).IsLessThanOrEqualTo(0.02);
-        await Assert.That(e.Slope).IsEqualTo(slope);
-        await Assert.That(e.PointIsOnLine(x, y)).IsTrue();
     }
 }
 public class EquationPointIsOnLineTests {
@@ -220,35 +167,6 @@ public class EquationIntersectionPointTests {
 }
 public class EquationOperatorTests {
     [Test]
-    [Arguments(4.42, 8.16)]
-    [Arguments(5.37, 8.59)]
-    [Arguments(5.79, 10.78)]
-    [Arguments(4.38, 2.34)]
-    public async Task InversionTests(
-        double slope, double intercept) {
-        Equation2D equation = new Equation2D(slope, intercept);
-        equation = -equation;
-        await Assert.That(equation.Slope).IsEqualTo(-slope);
-        await Assert.That(equation.Intercept).IsEqualTo(intercept);
-    }
-
-    [Test]
-    [Arguments(5.79, 3.69, 3.59, 3.54, 9.37, 7.23)]
-    [Arguments(6.61, 9.46, 1.73, 9.33, 8.34, 18.79)]
-    [Arguments(5.74, 4.10, 9.61, 2.24, 15.35, 6.35)]
-    [Arguments(8.92, 4.66, 3.54, 2.62, 12.46, 7.28)]
-    [Arguments(10.10, 3.91, 4.55, 2.29, 14.64, 6.20)]
-    public async Task PlusTests(
-        double slope1, double intercept1, double slope2, double intercept2, double outSlope, double outIntercept) {
-        Equation2D e1 = new Equation2D(slope1, intercept1);
-        Equation2D e2 = new Equation2D(slope2, intercept2);
-        Equation2D answer = e1 + e2;
-
-        await Assert.That(answer.Slope - outSlope).IsLessThanOrEqualTo(0.1);
-        await Assert.That(answer.Intercept - outIntercept).IsLessThanOrEqualTo(0.1);
-    }
-
-    [Test]
     public async Task DoubleEqualsTest() {
         Equation2D e1 = new Equation2D(-1, 1);
         Equation2D e2 = new Equation2D(1, 1);
@@ -258,46 +176,6 @@ public class EquationOperatorTests {
         await Assert.That(e1 == e2).IsFalse();
         await Assert.That(e1 != e2).IsTrue();
         await Assert.That(e2 != e3).IsFalse();
-    }
-
-    [Test]
-    public async Task GTandLTTest() {
-        Equation2D e1 = new Equation2D(-1, 1);
-        Equation2D e2 = new Equation2D(1, -1);
-        Equation2D e3 = new Equation2D(1, 1);
-        Equation2D e4 = new Equation2D(3, 2);
-
-        await Assert.That(e1 < e2).IsTrue();
-        await Assert.That(e2 < e3).IsTrue();
-        await Assert.That(e3 < e4).IsTrue();
-        await Assert.That(e2 < e1).IsFalse();
-        await Assert.That(e4 < e1).IsFalse();
-
-        await Assert.That(e1 > e2).IsFalse();
-        await Assert.That(e2 > e3).IsFalse();
-        await Assert.That(e3 > e4).IsFalse();
-        await Assert.That(e2 > e1).IsTrue();
-        await Assert.That(e4 > e1).IsTrue();
-    }
-
-    [Test]
-    public async Task GTETandLTETTest() {
-        Equation2D e1 = new Equation2D(-1, 1);
-        Equation2D e2 = new Equation2D(1, -1);
-        Equation2D e3 = new Equation2D(1, 1);
-        Equation2D e4 = new Equation2D(3, 2);
-
-        await Assert.That(e1 <= e2).IsTrue();
-        await Assert.That(e2 <= e3).IsTrue();
-        await Assert.That(e3 <= e4).IsTrue();
-        await Assert.That(e2 <= e1).IsFalse();
-        await Assert.That(e4 <= e1).IsFalse();
-
-        await Assert.That(e1 >= e2).IsFalse();
-        await Assert.That(e2 >= e3).IsTrue();
-        await Assert.That(e3 >= e4).IsFalse();
-        await Assert.That(e2 >= e1).IsTrue();
-        await Assert.That(e4 >= e1).IsTrue();
     }
 }
 public class EquationInterfaceImplementationTests {
@@ -399,5 +277,30 @@ public class VerticalEquationTests {
         Equation2D e1 = new Equation2D(3, 3, 3, 0);
 
         await Assert.That(e1.PointIsOnLine(x, y)).IsEqualTo(isOnLine);
+    }
+}
+public class EquationCanCalculateValueAtTests {
+    [Test]
+    [Arguments(0, 5, 15, 5)]
+    [Arguments(0, 100, 15, 100)]
+    [Arguments(3, 0, 2, 6)]
+    [Arguments(3, 0, -2, -6)]
+    [Arguments(3, 6, -2, 0)]
+    public async Task ValueAt(double slope, double intercept, double x, double exp) {
+        Equation2D e = new(slope, intercept);
+        await Assert.That(e.ValueAt(x)).IsEqualTo(exp);
+    }
+}
+public class OverriddenMethodTests {
+    [Test]
+    public async Task OverriddenMethods() {
+        Equation2D e1 = new(5, 3);
+        Equation2D e2 = new(e1);
+        await Assert.That(e1.Equals(e2)).IsTrue();
+        await Assert.That(e1.ToString).IsEqualTo("y = 5x + 3");
+        await Assert.That(e1.GetHashCode()).IsEqualTo(HashCode.Combine(5.0.GetHashCode(), 3.0.GetHashCode()));
+        object lorem = 15;
+        await Assert.That(e1.Equals(lorem)).IsFalse();
+
     }
 }
