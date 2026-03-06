@@ -2,7 +2,7 @@
 
 namespace HowlDev.Simulation.Physics.Primitive2D.PointTests;
 
-public class PointClassBaseTests {
+public class BaseTests {
     [Test]
     public async Task TestPointClassPair() {
         Point2D p = new Point2D(1.2, 3.4);
@@ -36,7 +36,7 @@ public class PointClassBaseTests {
         await Assert.That(p1.CompareTo(p2)).IsEqualTo(comparisonValue);
     }
 }
-public class PointClassMidpointTests {
+public class MidpointTests {
     [Test]
     [Arguments(0, 0, 0, 0, 0, 0)]
     [Arguments(0, 0, 10, 10, 5, 5)]
@@ -68,7 +68,7 @@ public class PointClassMidpointTests {
         await Assert.That(answer.Y).IsEqualTo(yOut);
     }
 }
-public class PointClassDistanceTests {
+public class DistanceTests {
     [Test]
     [Arguments(0, 0, 0, 0, 0)]
     [Arguments(0, 0, 10, 0, 10)]
@@ -100,10 +100,10 @@ public class PointClassDistanceTests {
         await Assert.That(p1.GetDistance(x2, y2)).IsEqualTo(expDistance);
     }
 }
-public class PointClassAssignPointTests {
+public class AssignPointTests {
     [Test]
     [MethodDataSource(nameof(GetValues))]
-    public async Task AssignPointTests(
+    public async Task AssignPoints(
         double x1, double x2, int angle, double scalar, double pointX, double pointY) {
         Point2D p = new Point2D(x1, x2);
         p += new Vector2D(new Rotation2D(angle), scalar);
@@ -123,7 +123,7 @@ public class PointClassAssignPointTests {
         yield return (-4.5, 2.4, 359, 1.59, -2.91, 2.37);
     }
 }
-public class PointClassOperatorTests {
+public class OperatorTests {
     [Test]
     public async Task PointCanInvert() {
         Point2D p = new Point2D(3, 5);
@@ -206,7 +206,7 @@ public class PointClassOperatorTests {
         await Assert.That(answer.Y).IsEqualTo(yOut);
     }
 }
-public class PointClassGetVectorsTests {
+public class GetVectorsTests {
     [Test]
     [Arguments(0, 0, 10, 0, 0, 10)]
     [Arguments(0, 0, 10, 10, 45, 14.14)]
@@ -230,16 +230,16 @@ public class PointClassGetVectorsTests {
         await Assert.That(Math.Abs(vector.Velocity - expectedVelocity)).IsLessThanOrEqualTo(0.1);
     }
 }
-public class PointClassGetAsVectorTests {
+public class GetAsVectorTests {
     [Test]
     public async Task GetAsVector2() {
         Point2D point = new(2.3, 4.5);
         await Assert.That(point.ToVector2()).IsEqualTo(new Vector2(2.3f, 4.5f));
     }
 }
-public class PointClassOverriddenTests {
+public class OverriddenTests {
     [Test]
-    public async Task OverriddenTests() {
+    public async Task OverriddenMethods() {
         Point2D p1 = new();
         await Assert.That(p1.ToString()).IsEqualTo("X: 0, Y: 0");
         await Assert.That(p1.GetHashCode()).IsEqualTo(HashCode.Combine(0.0.GetHashCode(), 0.0.GetHashCode()));

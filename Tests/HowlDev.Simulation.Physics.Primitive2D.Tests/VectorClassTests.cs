@@ -1,7 +1,7 @@
 ﻿namespace HowlDev.Simulation.Physics.Primitive2D.VectorTests;
 
 
-public class VectorClassBasicTests {
+public class BasicTests {
     [Test]
     public async Task DefaultConstructorTest() {
         Vector2D m1 = new Vector2D();
@@ -23,7 +23,7 @@ public class VectorClassBasicTests {
         await Assert.That(m1.Velocity).IsEqualTo(2.3);
     }
 }
-public class VectorClassOperatorTests {
+public class OperatorTests {
     [Test]
     [Arguments(45, 2.2, 45, 2.2, true)]
     [Arguments(45, 2.2, 85, 2.2, false)]
@@ -170,14 +170,14 @@ public class VectorClassOperatorTests {
         await Assert.That(divided.Velocity).IsEqualTo(expectedVelocity);
     }
 }
-public class VectorClassComparisonTests {
+public class ComparisonTests {
     [Test]
     [Arguments(45, 0, 45, 2, -1)]
     [Arguments(45, 0, 45, -2, 1)]
     [Arguments(45, 0, 45, 0, 0)]
     [Arguments(85, 0, 45, 0, 1)]
     [Arguments(45, 0, 85, 0, -1)]
-    public async Task ComparisonTests(
+    public async Task Comparisons(
         int rot1, double vel1, int rot2, double vel2, int compairsonValue) {
         Vector2D m1 = new Vector2D(rot1, vel1);
         Vector2D m2 = new Vector2D(rot2, vel2);
@@ -185,7 +185,7 @@ public class VectorClassComparisonTests {
         await Assert.That(m1.CompareTo(m2)).IsEqualTo(compairsonValue);
     }
 }
-public class VectorClassCoordinateAssignmentTests {
+public class CoordinateAssignmentTests {
     [Test]
     [Arguments(1, 0, 0, 1)]
     [Arguments(0, 1, 90, 1)]
@@ -249,7 +249,7 @@ public class VectorClassCoordinateAssignmentTests {
         await Assert.That(vector.Velocity - outVelocity).IsLessThanOrEqualTo(0.01);
     }
 }
-public class VectorClassOverriddenMethods {
+public class OverriddenMethodsTests {
     [Test]
     public async Task OverriddenMethods() {
         Vector2D vec1 = new(15, 5);

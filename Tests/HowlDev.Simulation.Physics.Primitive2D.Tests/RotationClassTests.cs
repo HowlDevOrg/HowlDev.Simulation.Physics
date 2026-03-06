@@ -1,7 +1,7 @@
 namespace HowlDev.Simulation.Physics.Primitive2D.RotationTests;
 
 // Ints in Arguments are a legacy of the way they used to be handled. It's more tests to check at least. 
-public class RotationClassConstraintTests {
+public class ConstraintTests {
     [Test]
     public async Task RotationCanBeSet1() {
         Rotation2D r = new Rotation2D(25);
@@ -51,7 +51,7 @@ public class RotationClassConstraintTests {
         await Assert.That(r2.RotationAngle).IsEqualTo(25);
     }
 }
-public class RotationClassCoordinateTests {
+public class CoordinateTests {
     private double d = Math.Round(Math.Sqrt(2) / 2, 2);
 
     [Test]
@@ -110,7 +110,7 @@ public class RotationClassCoordinateTests {
         await Assert.That(r.Y_Coord).IsEqualTo(-d);
     }
 }
-public class RotationClassXFlipTests {
+public class XFlipTests {
     [Test]
     [Arguments(0, 0)]
     [Arguments(180, 180)]
@@ -134,7 +134,7 @@ public class RotationClassXFlipTests {
         await Assert.That(r.RotationAngle).IsEqualTo(outDegree);
     }
 }
-public class RotationClassYFlipTests {
+public class YFlipTests {
     [Test]
     [Arguments(90, 90)]
     [Arguments(270, 270)]
@@ -158,7 +158,7 @@ public class RotationClassYFlipTests {
         await Assert.That(r.RotationAngle).IsEqualTo(outDegree);
     }
 }
-public class RotationClassDoubleFlipTests {
+public class DoubleFlipTests {
     [Test]
     [Arguments(45, 225)]
     [Arguments(359, 179)]
@@ -192,7 +192,7 @@ public class RotationClassDoubleFlipTests {
         await Assert.That(r.RotationAngle).IsEqualTo(outDegree);
     }
 }
-public class RotationClassAssignsToCoordinatesTests {
+public class AssignsToCoordinatesTests {
     [Test]
     [Arguments(10, 0, 0)]
     [Arguments(10, 10, 45)]
@@ -214,7 +214,7 @@ public class RotationClassAssignsToCoordinatesTests {
         await Assert.That(r.RotationAngle).IsEqualTo(outAngle);
     }
 }
-public class RotationClassAssignsTo2PointCoordinateTests {
+public class AssignsTo2PointCoordinateTests {
     [Test]
     [Arguments(0, 0, 10, 10, 45)]
     [Arguments(0, 0, -10, 10, 135)]
@@ -254,7 +254,7 @@ public class RotationClassAssignsTo2PointCoordinateTests {
         await Assert.That(r.RotationAngle).IsEqualTo(outAngle);
     }
 }
-public class RotationClassDistanceTests {
+public class DistanceTests {
     [Test]
     [Arguments(0, 0, 0)]
     [Arguments(0, 180, 180)]
@@ -308,7 +308,7 @@ public class RotationClassDistanceTests {
         await Assert.That(r1.IsCloseTo(r2, threshold)).IsEqualTo(isClose);
     }
 }
-public class RotationClassAverageToTests {
+public class AverageToTests {
     [Test]
     [Arguments(0, 90, 0, 0)]
     [Arguments(0, 90, 1, 90)]
@@ -376,7 +376,7 @@ public class RotationClassAverageToTests {
             .WithMessage("Percent must be between 0 and 1. (Parameter 'percent')");
     }
 }
-public class RotationClassMoveToTests {
+public class MoveToTests {
     [Test]
     [Arguments(0, 90, 5)]
     [Arguments(0, 270, 355)]
@@ -413,7 +413,7 @@ public class RotationClassMoveToTests {
         await Assert.That(r1.RotationAngle).IsEqualTo(expected);
     }
 }
-public class RotationClassAddOperatorTests {
+public class AddOperatorTests {
     [Test]
     [Arguments(90, 0, 90)]
     [Arguments(260, 90, 350)]
@@ -431,7 +431,7 @@ public class RotationClassAddOperatorTests {
         await Assert.That(result.RotationAngle).IsEqualTo(outAngle);
     }
 }
-public class RotationClassSubtractOperatorTests {
+public class SubtractOperatorTests {
     [Test]
     [Arguments(90, 0, 90)]
     [Arguments(260, 90, 170)]
@@ -449,7 +449,7 @@ public class RotationClassSubtractOperatorTests {
         await Assert.That(result.RotationAngle).IsEqualTo(outAngle);
     }
 }
-public class RotationClassAverageOperatorTests {
+public class AverageOperatorTests {
     [Test]
     [Arguments(0, 180, 90)]
     [Arguments(0, 90, 45)]
@@ -457,7 +457,7 @@ public class RotationClassAverageOperatorTests {
     [Arguments(350, 10, 0)]
     [Arguments(330, 90, 30)]
     [Arguments(45, 180, 112.5)]
-    public async Task AverageOperatorTests(
+    public async Task AverageOperators(
         double rot1, double rot2, double outAngle) {
         Rotation2D r1 = new Rotation2D(rot1);
         Rotation2D r2 = new Rotation2D(rot2);
@@ -465,7 +465,7 @@ public class RotationClassAverageOperatorTests {
         await Assert.That(answer.RotationAngle).IsEqualTo(outAngle);
     }
 }
-public class RotationClassModuloOperatorTests {
+public class ModuloOperatorTests {
     [Test]
     [Arguments(360, 60, 0)]
     [Arguments(90, 35, 20)]
@@ -480,7 +480,7 @@ public class RotationClassModuloOperatorTests {
         await Assert.That(answer.RotationAngle).IsEqualTo(outAngle);
     }
 }
-public class RotationClassImplicitOperatorTests {
+public class ImplicitOperatorTests {
     [Test]
     public async Task ImplicitConstructorAndExplicitReaderTest() {
         Rotation2D r1 = 90;
@@ -494,7 +494,7 @@ public class RotationClassImplicitOperatorTests {
         await Assert.That(d).IsEqualTo(90);
     }
 }
-public class RotationClassEqualityInterfaceTests {
+public class EqualityInterfaceTests {
     [Test]
     [Arguments(0, 0, true)]
     [Arguments(0, 360, true)]
@@ -504,14 +504,14 @@ public class RotationClassEqualityInterfaceTests {
     [Arguments(245, 94, false)]
     [Arguments(245.25, 245.24, false)]
     [Arguments(245.25, 245.25, true)]
-    public async Task EqualityInterfaceTests(
+    public async Task EqualityInterfaces(
         double rot1, double rot2, bool equality) {
         Rotation2D r1 = new Rotation2D(rot1);
         Rotation2D r2 = new Rotation2D(rot2);
         await Assert.That(r1.Equals(r2)).IsEqualTo(equality);
     }
 }
-public class RotationClassComparableInterfaceTests {
+public class ComparableInterfaceTests {
     [Test]
     [Arguments(0, 0, 0)]
     [Arguments(90, 90, 0)]
@@ -525,7 +525,7 @@ public class RotationClassComparableInterfaceTests {
         await Assert.That(r1.CompareTo(r2)).IsEqualTo(comparison);
     }
 }
-public class RotationClassSmallTests {
+public class SmallTests {
     [Test]
     public async Task OneBigTest() {
         Rotation2D rot1 = new Rotation2D(45);

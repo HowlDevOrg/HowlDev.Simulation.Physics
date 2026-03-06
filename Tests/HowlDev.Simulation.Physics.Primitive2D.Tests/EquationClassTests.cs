@@ -1,6 +1,6 @@
 namespace HowlDev.Simulation.Physics.Primitive2D.EquationTests;
 
-public class EquationBasicTests {
+public class BasicTests {
     [Test]
     public async Task DefaultConstructorTest() {
         Equation2D e = new Equation2D();
@@ -29,7 +29,7 @@ public class EquationBasicTests {
         await Assert.That(e.Intercept).IsEqualTo(4);
     }
 }
-public class EquationCoordinateAssignmentTests {
+public class CoordinateAssignmentTests {
     [Test]
     [Arguments(0, 0, 5, 0, 0, 0)]
     [Arguments(0, 0, 5, 5, 1, 0)]
@@ -80,7 +80,7 @@ public class EquationCoordinateAssignmentTests {
         await Assert.That(equation.Slope - slope).IsLessThanOrEqualTo(0.1);
     }
 }
-public class EquationPointIsOnLineTests {
+public class PointIsOnLineTests {
     [Test]
     [Arguments(0, 0, 5, 0, 0, 0, true)]
     [Arguments(0, 0, 5, 5, 100, 100, true)]
@@ -127,7 +127,7 @@ public class EquationPointIsOnLineTests {
         await Assert.That(equation.PointIsOnLine(pointX, pointY, 0.15)).IsEqualTo(isOnLine);
     }
 }
-public class EquationIntersectionPointTests {
+public class IntersectionPointTests {
     [Test]
     [Arguments(1.2, 2.8, 1.2, 5.6, 0, 0, true)]
     [Arguments(1.2, 2.8, 1.2, 2.8, -1.5, 0.93, true)]
@@ -140,7 +140,7 @@ public class EquationIntersectionPointTests {
     [Arguments(-2.7, 5.8, -0.7, 5.6, 0.1, 5.5, false)]
     [Arguments(4.1, 4.9, -0.2, 2.5, -0.5, 2.6, false)]
     [Arguments(-1.1, 0.9, -3.1, -2.1, -1.5, 2.5, false)]
-    public async Task IntersectionPointTests(
+    public async Task IntersectionPoints(
         double slope1, double intercept1, double slope2, double intercept2, double pointX, double pointY, bool isNull) {
         Equation2D e1 = new Equation2D(slope1, intercept1);
         Equation2D e2 = new Equation2D(slope2, intercept2);
@@ -165,7 +165,7 @@ public class EquationIntersectionPointTests {
         }
     }
 }
-public class EquationOperatorTests {
+public class OperatorTests {
     [Test]
     public async Task DoubleEqualsTest() {
         Equation2D e1 = new Equation2D(-1, 1);
@@ -178,7 +178,7 @@ public class EquationOperatorTests {
         await Assert.That(e2 != e3).IsFalse();
     }
 }
-public class EquationInterfaceImplementationTests {
+public class InterfaceImplementationTests {
     [Test]
     [Arguments(-1, 1, 2, 0, false)]
     [Arguments(-2, -1, 1, 0, false)]
@@ -279,7 +279,7 @@ public class VerticalEquationTests {
         await Assert.That(e1.PointIsOnLine(x, y)).IsEqualTo(isOnLine);
     }
 }
-public class EquationCanCalculateValueAtTests {
+public class CanCalculateValueAtTests {
     [Test]
     [Arguments(0, 5, 15, 5)]
     [Arguments(0, 100, 15, 100)]
