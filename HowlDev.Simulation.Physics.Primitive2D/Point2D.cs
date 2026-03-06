@@ -1,4 +1,6 @@
-﻿namespace HowlDev.Simulation.Physics.Primitive2D;
+﻿using System.Numerics;
+
+namespace HowlDev.Simulation.Physics.Primitive2D;
 
 /// <summary>
 /// Readonly struct <c>Point</c> holds two double coordinates with a few helpful methods.
@@ -18,11 +20,6 @@ public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     public double Y => y;
 
     /// <summary>
-    /// Property for handling tuples of data
-    /// </summary>
-    public (double x, double y) Pair => (x, y);
-
-    /// <summary>
     /// Default constructor. Sets to (0, 0).
     /// </summary>
     public Point2D() {
@@ -38,15 +35,6 @@ public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     public Point2D(double X, double Y) {
         x = X;
         y = Y;
-    }
-
-    /// <summary>
-    /// Paired double constructor.
-    /// </summary>
-    /// <param name="point">(X, Y) coordinate</param>
-    public Point2D((double x, double y) point) {
-        x = point.x;
-        y = point.y;
     }
 
     /// <summary>
@@ -121,6 +109,27 @@ public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     }
 
     /// <summary>
+    /// Returns the points as a Vector2.
+    /// </summary>
+    public Vector2 ToVector() {
+        return new Vector2((float)x, (float)y);
+    }
+
+    /// <summary>
+    /// Converts a point into a tuple of doubles.
+    /// </summary>
+    public static implicit operator (double x, double y)(Point2D obj) {
+        return (obj.x, obj.y);
+    }
+
+    /// <summary>
+    /// Converts a tuple of points into a Point2D.
+    /// </summary>
+    public static implicit operator Point2D((double x, double y) tuple) {
+        return new Point2D(tuple.x, tuple.y);
+    }
+
+    /// <summary>
     /// Inverts the given point through the origin.
     /// </summary>
     /// <returns>Inverted point</returns>
@@ -183,7 +192,7 @@ public readonly struct Point2D : IEquatable<Point2D>, IComparable<Point2D> {
     /// Gets the angle from the left point to the right point. 
     /// </summary>
     public static Rotation2D operator ^(Point2D left, Point2D right) {
-        return Rotation2D.FromCoordinates(left.Pair, right.Pair);
+        return Rotation2D.FromCoordinates(left, right);
     }
 
     /// <summary>

@@ -1,19 +1,21 @@
-﻿namespace HowlDev.Simulation.Physics.Primitive2D.Tests;
+﻿using System.Numerics;
+
+namespace HowlDev.Simulation.Physics.Primitive2D.PointTests;
 public class PointClassBaseTests {
     [Test]
     public async Task TestPointClassPair() {
-        Point2D p = new Point2D((1.2, 3.4));
+        Point2D p = new Point2D(1.2, 3.4);
         await Assert.That(p.X).IsEqualTo(1.2);
         await Assert.That(p.Y).IsEqualTo(3.4);
     }
 
     [Test]
     public async Task PointClassConstructors() {
-        Point2D p1 = new Point2D(1.2, 3.4);
-        await Assert.That(p1.Pair).IsEqualTo((1.2, 3.4));
+        Point2D p1 = new Point2D((1.2, 3.4));
+        await Assert.That(p1).IsEqualTo((1.2, 3.4));
 
-        Point2D p2 = new Point2D((3.4, 5.6));
-        await Assert.That(p2.Pair).IsEqualTo((3.4, 5.6));
+        Point2D p2 = (3.4, 5.6);
+        await Assert.That(p2).IsEqualTo((3.4, 5.6));
 
         Point2D p3 = new Point2D(p1);
         await Assert.That(p3).IsEqualTo(p1);
@@ -215,7 +217,6 @@ public class PointClassOperatorTests {
     }
 }
 public class PointClassGetVectorsTests {
-
     [Test]
     [Arguments(0, 0, 10, 0, 0, 10)]
     [Arguments(0, 0, 10, 10, 45, 14.14)]
@@ -237,5 +238,12 @@ public class PointClassGetVectorsTests {
 
         await Assert.That(Math.Abs(vector.Rotation.RotationAngle - expectedRotation)).IsLessThanOrEqualTo(0.1);
         await Assert.That(Math.Abs(vector.Velocity - expectedVelocity)).IsLessThanOrEqualTo(0.1);
+    }
+}
+public class PointClassGetAsVectorTests {
+    [Test]
+    public async Task GetAsVector2() {
+        Point2D point = new(2.3, 4.5);
+        await Assert.That(point.ToVector()).IsEqualTo(new Vector2(2.3f, 4.5f));
     }
 }
