@@ -6,63 +6,63 @@
 /// such as intersection points and defining if a point is on a line. 
 /// </summary>
 public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation2D> {
-    private readonly double coefficient0;
-    private readonly double coefficient1;
-    private bool x_Intercept => coefficient1 == double.PositiveInfinity;
+    private readonly double intercept;
+    private readonly double slope;
+    private bool x_Intercept => slope == double.PositiveInfinity;
 
     /// <summary>
     /// Gets the current Slope.
     /// </summary>
-    public double Slope => coefficient1;
+    public double Slope => slope;
 
     /// <summary>
     /// Gets the current Intercept.
     /// </summary>
-    public double Intercept => coefficient0;
+    public double Intercept => intercept;
 
     /// <summary>
     /// Default constructor, leaves coefficients as <c>0.0</c>.
     /// </summary>
     public Equation2D() {
-        coefficient0 = 0.0;
-        coefficient1 = 0.0;
+        intercept = 0.0;
+        slope = 0.0;
     }
 
     /// <summary>
     /// Assign slope and intercept directly.
     /// </summary>
     public Equation2D(double slope, double intercept) {
-        coefficient1 = slope;
-        coefficient0 = intercept;
+        this.slope = slope;
+        this.intercept = intercept;
     }
 
     /// <summary>
     /// Takes in two coordinate pairs and derives their equation.
     /// </summary>
     public Equation2D(double x1, double y1, double x2, double y2) {
-        (coefficient0, coefficient1) = CalculateFromCoordinates(x1, y1, x2, y2);
+        (intercept, slope) = CalculateFromCoordinates(x1, y1, x2, y2);
     }
 
     /// <summary>
     /// Takes in a pair of <c>Point</c>s and derives their equation.
     /// </summary>
     public Equation2D(Point2D p1, Point2D p2) {
-        (coefficient0, coefficient1) = CalculateFromCoordinates(p1.X, p1.Y, p2.X, p2.Y);
+        (intercept, slope) = CalculateFromCoordinates(p1.X, p1.Y, p2.X, p2.Y);
     }
 
     /// <summary>
     /// Takes in a <c>Line</c> and derives its equation.
     /// </summary>
     public Equation2D(Line2D l1) {
-        (coefficient0, coefficient1) = CalculateFromCoordinates(l1.StartPoint.X, l1.StartPoint.Y, l1.EndPoint.X, l1.EndPoint.Y);
+        (intercept, slope) = CalculateFromCoordinates(l1.StartPoint.X, l1.StartPoint.Y, l1.EndPoint.X, l1.EndPoint.Y);
     }
 
     /// <summary>
     /// Duplication constructor. 
     /// </summary>
     public Equation2D(Equation2D equation) {
-        coefficient0 = equation.coefficient0;
-        coefficient1 = equation.coefficient1;
+        intercept = equation.intercept;
+        slope = equation.slope;
     }
 
     /// <summary>
@@ -131,13 +131,13 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
         if (x_Intercept && e1.x_Intercept) return null; // Covers vertical line cases
 
         if (x_Intercept) {
-            return new Point2D(Intercept, Intercept * e1.coefficient1 + e1.coefficient0);
+            return new Point2D(Intercept, Intercept * e1.slope + e1.intercept);
         } else if (e1.x_Intercept) {
-            return new Point2D(e1.Intercept, e1.Intercept * coefficient1 + coefficient0);
+            return new Point2D(e1.Intercept, e1.Intercept * slope + intercept);
         }
 
-        double x = (coefficient0 - e1.coefficient0) / (e1.coefficient1 - coefficient1);
-        double y = e1.coefficient1 * x + e1.coefficient0;
+        double x = (intercept - e1.intercept) / (e1.slope - slope);
+        double y = e1.slope * x + e1.intercept;
 
         return new Point2D(x, y);
     }
@@ -169,7 +169,7 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// <include file="_SharedXML.xml" path='doc/member[@name="Phrases.Implementation.Equatable"]/*'/>
     /// </summary>
     public bool Equals(Equation2D other) {
-        return other.coefficient0 == coefficient0 && other.coefficient1 == coefficient1;
+        return other.intercept == intercept && other.slope == slope;
     }
 
     /// <summary>
@@ -177,9 +177,9 @@ public readonly struct Equation2D : IEquatable<Equation2D>, IComparable<Equation
     /// </summary>
     /// <returns><include file="_SharedXML.xml" path='doc/member[@name="Phrases.Compare.Return"]/*'/></returns>
     public int CompareTo(Equation2D other) {
-        int value = coefficient1.CompareTo(other.coefficient1);
+        int value = slope.CompareTo(other.slope);
         if (value == 0) {
-            return coefficient0.CompareTo(other.coefficient0);
+            return intercept.CompareTo(other.intercept);
         }
 
         return value;
