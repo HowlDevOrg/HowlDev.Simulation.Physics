@@ -1,9 +1,9 @@
 ﻿namespace HowlDev.Simulation.Physics.Primitive2D;
 
 /// <summary>
-/// Class <c>Rotation</c> stores a single RotationAngle as a double (rounded to 2 decimal places) 
-/// and provides a number of helpful methods and properties to work with 2D angles. It 
-/// calculates the unit circle point on creation for quick retrieval. 
+/// Class <c>Rotation</c> stores a single RotationAngle as a double (rounded to 2 decimal places)
+/// and provides a number of helpful methods and properties to work with 2D angles. It
+/// calculates the unit circle point on creation for quick retrieval.
 /// </summary>
 public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation2D> {
     private readonly double rotationAngle;
@@ -17,19 +17,19 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     public double RotationAngle => rotationAngle;
 
     /// <value>
-    /// Gets the X coordinate of the angle on a unit circle (as a radius 
+    /// Gets the X coordinate of the angle on a unit circle (as a radius
     /// of 1).
     /// </value>
     public double X_Coord => xCoord;
 
     /// <value>
-    /// Gets the Y coordinate of the angle on a unit circle (as a radius 
+    /// Gets the Y coordinate of the angle on a unit circle (as a radius
     /// of 1).
     /// </value>
     public double Y_Coord => yCoord;
 
     /// <summary>
-    /// A point on the Unit Circle. 
+    /// A point on the Unit Circle.
     /// </summary>
     public Point2D Coords {
         get {
@@ -61,8 +61,8 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     #endregion
     #region Methods
     /// <summary>
-    /// Takes in a pair of coordinates from origin (so convert them to that beforehand or use the other method) 
-    /// and returns a rotation with that angle value. 
+    /// Takes in a pair of coordinates from origin (so convert them to that beforehand or use the other method)
+    /// and returns a rotation with that angle value.
     /// </summary>
     /// <returns>A new Rotation2D with the angle to the coordinates</returns>
     public static Rotation2D FromCoordinates(double x, double y) {
@@ -85,7 +85,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
 
     /// <summary>
     /// Takes in a pair of tuples and returns a rotation with the angle to those points, using an overload
-    /// of this method. 
+    /// of this method.
     /// See also: <seealso cref="FromCoordinates(double, double)"/>
     /// </summary>
     /// <returns>A new Rotation2D with the angle between the points</returns>
@@ -102,7 +102,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// Two-Point passthrough for the rotation from the first point. 
+    /// Two-Point passthrough for the rotation from the first point.
     /// See <see cref="FromCoordinates(double, double, double, double)"/>.
     /// </summary>
     /// <param name="p1">Current Point</param>
@@ -113,7 +113,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// Line passthrough for creating rotation from coordinates. 
+    /// Line passthrough for creating rotation from coordinates.
     /// </summary>
     /// <returns>A new Rotation2D with the angle of the line</returns>
     public static Rotation2D FromCoordinates(Line2D l1) {
@@ -173,21 +173,20 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     /// <param name="absValue">Set to <c>True</c> to return the absolute value of the distance</param>
     /// <returns></returns>
     public double DistanceTo(double angle, bool absValue = true) {
-        // Tried to optimize! I need to sort by absolute value but preserve original 
-        // sign, so.. this might actually be the best solution. I'm not a big fan of the 
-        // array allocation but I need a bit more logic to check it.
-        // For whatever reason I'm not getting LINQ intellisense off of this array, which 
-        // I thought was possible. But that could theoretically fix it. 
-        double[] distances = [angle - (rotationAngle + 360), angle + 360 - rotationAngle, angle - rotationAngle];
-        Array.Sort(distances, (a, b) => {
-            if (Math.Abs(a) == Math.Abs(b)) return 0;
-            if (Math.Abs(a) < Math.Abs(b)) return -1;
-            return 1;
-        });
+        ReadOnlySpan<double> distances = [angle - (rotationAngle + 360), angle + 360 - rotationAngle, angle - rotationAngle];
+        double min = double.PositiveInfinity;
+        double abs = double.PositiveInfinity;
+        foreach (double item in distances) {
+            double localAbs = Math.Abs(item);
+            if (localAbs < abs) {
+                abs = localAbs;
+                min = item;
+            }
+        }
 
-        if (Math.Abs(distances[0]) == 180) return 180; // Hard-coded for 180 degrees. 
+        if (Math.Abs(min) == 180) return 180; // Hard-coded for 180 degrees.
 
-        return absValue ? Math.Abs(distances[0]) : distances[0];
+        return absValue ? Math.Abs(min) : min;
     }
 
     /// <summary>
@@ -201,8 +200,8 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// Averages between this and the "other" parameter by a percentage. 0 maintains the current angle, 
-    /// and 1 sets it to the other angle. 
+    /// Averages between this and the "other" parameter by a percentage. 0 maintains the current angle,
+    /// and 1 sets it to the other angle.
     /// </summary>
     /// <param name="angle">Angle to average to</param>
     /// <param name="percent">Range from 0 to 1</param>
@@ -221,7 +220,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// Averages between this and the "other" parameter by a percentage. 0 maintains the current angle, 
+    /// Averages between this and the "other" parameter by a percentage. 0 maintains the current angle,
     /// and 1 sets it to the other angle. This just passes through to the other overload.
     /// See also: <see cref="AverageTo(double, double)"/>
     /// </summary>
@@ -234,8 +233,8 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// Given an input angle, move towards that angle with the max amount provided; otherwise, snap 
-    /// to that angle. 
+    /// Given an input angle, move towards that angle with the max amount provided; otherwise, snap
+    /// to that angle.
     /// </summary>
     /// <param name="angle">Angle to move towards</param>
     /// <param name="maxAmount">Max amount of angle movement (must be positive)</param>
@@ -267,7 +266,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// Static method to return the angle to a point in space. 
+    /// Static method to return the angle to a point in space.
     /// </summary>
     public static double AngleOf(double x, double y) {
         double value = Math.Atan2(y, x) / Math.PI * 180;
@@ -277,7 +276,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// Static method to return the angle to a point in space. 
+    /// Static method to return the angle to a point in space.
     /// </summary>
     public static double AngleOf(Point2D point) {
         return AngleOf(point.X, point.Y);
@@ -285,7 +284,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
 
     /// <summary>
     /// Suggested by AI. I think it could be a useful method. <br/>
-    /// Returns true if the distance to the other value is less or equal to the tolerance.  
+    /// Returns true if the distance to the other value is less or equal to the tolerance.
     /// </summary>
     public bool IsCloseTo(Rotation2D other, double tolerance)
         => DistanceTo(other) <= tolerance;
@@ -345,7 +344,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// Averages the two angles together (with a separation above 180, so 0 and 180 returns 90). 
+    /// Averages the two angles together (with a separation above 180, so 0 and 180 returns 90).
     /// </summary>
     /// <returns>New <c>Rotation</c> with the average angle set</returns>
     public static Rotation2D operator ^(Rotation2D left, Rotation2D right) {
@@ -411,7 +410,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     #endregion
     #region Custom operators
     /// <summary>
-    /// Returns a pair of coordinates by multiplying the X and Y coordinates of the Rotation value 
+    /// Returns a pair of coordinates by multiplying the X and Y coordinates of the Rotation value
     /// by the given scalar.
     /// </summary>
     /// <param name="left">Rotation object to get coordinates of</param>
@@ -432,7 +431,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     }
 
     /// <summary>
-    /// IComparable interface implementation. 
+    /// IComparable interface implementation.
     /// </summary>
     /// <returns><include file="_SharedXML.xml" path='doc/member[@name="Phrases.Compare.Return"]/*'/></returns>
     public int CompareTo(Rotation2D other) {
