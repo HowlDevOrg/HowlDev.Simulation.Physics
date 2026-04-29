@@ -173,6 +173,11 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     /// <param name="absValue">Set to <c>True</c> to return the absolute value of the distance</param>
     /// <returns></returns>
     public double DistanceTo(double angle, bool absValue = true) {
+        // Tried to optimize! I need to sort by absolute value but preserve original 
+        // sign, so.. this might actually be the best solution. I'm not a big fan of the 
+        // array allocation but I need a bit more logic to check it.
+        // For whatever reason I'm not getting LINQ intellisense off of this array, which 
+        // I thought was possible. But that could theoretically fix it. 
         double[] distances = [angle - (rotationAngle + 360), angle + 360 - rotationAngle, angle - rotationAngle];
         Array.Sort(distances, (a, b) => {
             if (Math.Abs(a) == Math.Abs(b)) return 0;
@@ -182,11 +187,7 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
 
         if (Math.Abs(distances[0]) == 180) return 180; // Hard-coded for 180 degrees. 
 
-        if (absValue) {
-            return Math.Abs(distances[0]);
-        } else {
-            return distances[0];
-        }
+        return absValue ? Math.Abs(distances[0]) : distances[0];
     }
 
     /// <summary>
