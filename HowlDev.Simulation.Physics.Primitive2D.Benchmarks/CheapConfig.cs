@@ -7,6 +7,10 @@ using BenchmarkDotNet.Exporters;
 
 namespace HowlDev.Simulation.Physics.Primitive2D.Benchmarks;
 
+/// <summary>
+/// This is a good enough config for direction and rough estimates. You should debug with 
+/// a simple [ShortJob], because I don't know how this library is supposed to work.
+/// </summary>
 internal class CheapConfig : ManualConfig {
     public CheapConfig() {
         AddJob(new Job(Job.Default) {
