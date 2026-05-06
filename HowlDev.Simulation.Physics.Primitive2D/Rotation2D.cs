@@ -184,9 +184,9 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
             }
         }
 
-        if (Math.Abs(min) == 180) return 180; // Hard-coded for 180 degrees.
+        if (abs == 180) return 180; // Hard-coded positive for 180 degrees.
 
-        return absValue ? Math.Abs(min) : min;
+        return absValue ? abs : min;
     }
 
     /// <summary>
