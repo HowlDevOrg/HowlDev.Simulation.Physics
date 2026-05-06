@@ -470,8 +470,9 @@ public readonly struct Rotation2D : IEquatable<Rotation2D>, IComparable<Rotation
     private static (double angle, double x, double y) CalculateRotationData(double angle) {
         // Normalize angle to [0, 360)
         double incomingValue = angle;
-        while (incomingValue < 0) {
-            incomingValue += 360;
+        if (incomingValue < 0) {
+            int multiple = (int)incomingValue / 360;
+            incomingValue += (multiple + 1) * 360;
         }
 
         double normalizedAngle = Math.Round(incomingValue % 360, 2);
